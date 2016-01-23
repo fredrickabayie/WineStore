@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Wine-store - Made With Love</title>
+    <meta charset="utf-8">
+    <meta name="description" content="1E-shop - Bootstrap Theme from angelostudio.net">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/style.min.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <!--<link rel="stylesheet" href="../css/purple.css" class="colors">-->
+    <link rel="shortcut icon" href="../img/winestore-logo.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon-precomposed" href="../img/winestore-logo.png" type="image/png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/winestore-logo.png" type="image/png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../img/winestore-logo.png" type="image/png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../img/winestore-logo.png" type="image/png" />
+    <script type="text/javascript" src="../js/modernizr.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--<a class="navbar-brand" href="#">WebSiteName</a>-->
+            <img src="../img/winestoreshop-logo.png" alt="#" class="img-responsive center-block" width="100" height="100" style="padding-top: 5px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button id="wineTypeBtn" type="button" class="btn btn-default dropdown-toggle wineTypeBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All <span class="caret"></span></button>
+                    <ul class="dropdown-menu wineTypes" id="wineTypes">
+
+                    </ul>
+                </span><!-- /btn-group -->
+                <input style="height: 40px; margin-top: 5px; border-radius: 0" id="searchField" name="searchField" placeholder="Search" class="form-control input-lg requiredField" type="text" data-error-empty="Enter winename">
+
+                <!--<span class="input-group-btn">-->
+                    <!--<button type="button" class="btn btn-default dropdown-toggle wineTypeBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>-->
+                <!--</span>-->
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Sort by <span class="caret"></span></a>
+                    <ul class="dropdown-menu sortWines" id="sortWines">
+                        <li><a id="5">Wine Name</a></li>
+                        <li><a id="6">Price: High to Low</a></li>
+                        <li><a id="7">Price: Low to High</a></li>
+                    </ul>
+                </li>
+                <li><a href="#signin-modal" data-toggle="modal">Sign in</a></li>
+                <li><a href="#section3">Cart</a></li>
+
+            </ul>
+        </div>
+
+        <!--<div class="navbar-right">-->
+            <!--<img src="../img/winestoreshop-logo.png" alt="#" class="img-responsive center-block" width="100" height="100" style="padding-top: 5px">-->
+        <!--</div>-->
+    </div>
+</nav>
+
+<section id="features" class="features-1">
+    <div class="container padding-top-bottom">
+        <div class="row header">
+            <div class="col-md-12">
+                <h2>WINES</h2>
+                <p>We Serve Quality</p>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="row" id="displayWines">
+                <!--<div class="col-md-4 col-sm-4 col-xs-12 anima scale-in ">-->
+                <!--<article class="text-center">-->
+                <!--<img src="img/demo1.jpg" alt="#" class="zoom-img img-responsive center-block">-->
+                <!--<h3>​ORGANISED LAYERS</h3>-->
+                <!--<p>Nodal point courier towards decay dome advert wonton soup chrome voodoo.</p>-->
+                <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                <!--<a class="btn-group" href="#" data-toggle="modal" data-target="#product-modal"><b>$5</b> Buy now</a>-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--</article>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-labelledby="smallModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm2">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="close-modal" href="#" data-dismiss="modal">
+                    <span class="menu-icon"></span>
+                </a>
+                <!--<img src="../img/winestore-logo.png" alt="" class="img-responsive">-->
+            </div>
+            <!--<div class="modal-body">-->
+                <h3 class="text-center"><b>Enter Your Login Details </b></h3>
+            <!--</div>-->
+            <div class="modal-footer">
+                <form class="myform" method="post">
+                    <div class="form-group">
+                        <!--<label class="control-label" for="contact-mail">Email</label>-->
+                        <div class=" controls">
+                            <input id="username" name="username" placeholder="Username" class="form-control input-lg requiredField" type="text" data-error-invalid="Invalid username" data-error-empty="Enter username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!--<label class="control-label">password</label>-->
+                        <div class="controls">
+                            <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button id="loginBtn" type="button" class="btn btn-block">LOG IN</button>
+                    </div>
+                    <p class="text-center"><a href="" data-dismiss="modal">Cancel</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script type="text/javascript" src="../js/placeholders.min.js"></script>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.waitforimages.min.js"></script>
+<script type="text/javascript" src="../js/jquery.counterup.min.js"></script>
+<script type="text/javascript" src="../js/main.min.js"></script>
+<!--<script type="text/javascript" src="../js/ga.js"></script>-->
+<script type="text/javascript" src="../controllers/wine_controller.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+/*====================================
+=            COLOR purple            =
+====================================*/
+/*
+purple
+D486F7
+C866F5
+*/
+
+
+.bg-shop {
+    background-color: #D486F7;
+}
+
+a {
+    color: #D486F7;
+}
+.color-text {
+    color: #D486F7;
+}
+.btn {
+    background: #D486F7;
+    -webkit-box-shadow: 0 4px 0 #C866F5;
+    -moz-box-shadow: 0 4px 0 #C866F5;
+    box-shadow: 0 4px 0 #C866F5;
+}
+
+.numbers-1 h2 {
+    color: #D486F7;
+}
+
+.features-1 img:hover {
+    border: 6px solid #D486F7;
+}
+
+.back-to-top {
+    background: #D486F7;
+}
+
+.social-links-2 li a:hover {
+    color: #202020;
+    background:#D486F7;
+    border-color: #D486F7;
+}
+#menu-link:hover .menu-icon{
+    background-color: #D486F7;
+}
+#menu-link.is-clicked{
+    background-color: #D486F7;
+}
+.myform .form-control:focus,
+.myform textarea.inputError:focus,
+.input-group .form-control:focus {
+    border: 2px solid #D486F7;
+}
+.hero-start-link:hover {
+    color:#D486F7;
+}
+.overlay nav ul li a:after {
+    background: #D486F7;
+}
+.close-modal:hover {
+    background-color: #D486F7;
+}
+.zoom-img  {
+    border: 6px solid #D486F7;
+}
+/*-----  End of COLOR purple  ------*/
+
+

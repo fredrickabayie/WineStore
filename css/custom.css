@@ -1,0 +1,25 @@
+#wineTypeBtn{
+    color:#202020;
+    text-decoration:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+
+    height: 40px;
+    width: 60px;
+    padding: 0;
+    margin-top: 5px;
+}
+
+#wineTypeBtn:hover, #wineTypeBtn:focus, #wineTypeBtn:active{
+    color:#202020;
+    text-decoration:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+
+    height: 40px;
+    width: 60px;
+    padding: 0;
+    margin-top: 5px;
+}
