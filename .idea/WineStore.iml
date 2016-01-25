@@ -9,5 +9,11 @@
     <orderEntry type="library" name="waypoints" level="application" />
     <orderEntry type="library" name="html5shiv" level="application" />
     <orderEntry type="library" name="respond" level="application" />
+    <orderEntry type="library" name="jquery-ui" level="application" />
+    <orderEntry type="library" name="modernizr" level="application" />
+    <orderEntry type="library" name="simplex-noise" level="application" />
+    <orderEntry type="library" name="dat.gui" level="application" />
+    <orderEntry type="library" name="jquery.dataTables" level="application" />
+    <orderEntry type="library" name="jquery-1.12.0" level="application" />
   </component>
 </module>

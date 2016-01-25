@@ -140,7 +140,9 @@ $(function () {
 
         obj = sendRequest(url);
         if (obj.result === 1) {
-            window.location.replace("home.html");
+            window.location.replace("dashboard.php");
         }
     });
 });
+
+

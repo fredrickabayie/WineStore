@@ -17,6 +17,14 @@ class Wine extends Adb
 {
 
     /**
+     *
+     */
+    public function __destruct()
+    {
+        parent::__destruct();
+    }
+
+    /**
      * Function login
      *
      * Authenticates users to be able to access
@@ -31,11 +39,14 @@ class Wine extends Adb
     {
         $loginQuery = "SELECT `users`.`user_name`, `users`.`password`
                        FROM `users`
-                       WHERE `users`.`user_name` = '$username'
-                       AND `users`.`password` = MD5('$password')
+                       WHERE `users`.`user_name` = ?
+                       AND `users`.`password` = MD5(?)
                        LIMIT 1";
 
-        return $this->query($loginQuery);
+        if ($statement = $this->prepare($loginQuery))
+        $statement->bind_param("ss", $username, $password);
+        $statement->execute();
+        return $statement->get_result();
     }
 
     /**
@@ -59,7 +70,7 @@ class Wine extends Adb
                       AND `wine`.`winery_id` = `winery`.`winery_id`
                       AND `wine`.`wine_id` = `inventory`.`wine_id`
                       ORDER BY `wine_id`
-                      LIMIT 9";
+                      LIMIT 20";
 
         return $this->query($wineQuery);
     }
@@ -85,7 +96,7 @@ class Wine extends Adb
                             AND `wine`.`winery_id` = `winery`.`winery_id`
                             AND `wine`.`wine_id` = `inventory`.`wine_id`
                             WHERE `wine`.`wine_name`
-                            LIKE '$searchWord%'
+                            LIKE '%$searchWord%'
                             LIMIT 9";
 
         return $this->query($searchWineQuery);
@@ -129,11 +140,14 @@ class Wine extends Adb
                                    ON `wine`.`wine_type` = `wine_type`.`wine_type_id`
                                    AND `wine`.`winery_id` = `winery`.`winery_id`
                                    AND `wine`.`wine_id` = `inventory`.`wine_id`
-                                   WHERE `wine_type`.`wine_type` = '$wineType'
+                                   WHERE `wine_type`.`wine_type` = ?
                                    ORDER BY `wine_id`
                                    LIMIT 9";
 
-        return $this->query($displayWineByTypeQuery);
+        $statement = $this->prepare($displayWineByTypeQuery);
+        $statement->bind_param("s", $wineType);
+        $statement->execute();
+        return $statement->get_result();
     }
 
     /**
@@ -209,6 +223,26 @@ class Wine extends Adb
 }
 
 //$Wine = new Wine();
+//$loginQuery = "SELECT `users`.`user_name`, `users`.`password`
+//                       FROM `users`
+//                       WHERE `users`.`user_name` = ?
+//                       AND `users`.`password` = MD5(?)
+//                       LIMIT 1";
+//$username = "admin";
+//$password = "admin";
+//
+//$statement = $Wine->prepare($loginQuery);
+//$statement->bind_param("ss", $username, $password);
+//$statement->execute();
+//
+//$result = $statement->get_result();
+//$row = $result->fetch_assoc();
+//echo "".$row["user_name"];
+//echo "".$row["password"];
+//$statement->close();
+
+
+
 //$word = "kin";
 //$result = $Wine->searchWine($word);
 //

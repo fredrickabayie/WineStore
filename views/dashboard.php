@@ -8,7 +8,7 @@
     <meta content='' name='description'>
     <meta content='' name='keywords'>
     <link href="../css/admin.dashboard.css" rel="stylesheet" type="text/css" /><link href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />
+<!--    <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />-->
 
 </head>
 <body class='main page'>
@@ -73,11 +73,11 @@
         <ul id='dock'>
             <li class='active launcher'>
                 <i class='icon-dashboard'></i>
-                <a href="dashboard.html">Dashboard</a>
+                <a href="dashboard.php">Dashboard</a>
             </li>
             <li class='launcher'>
                 <i class='icon-file-text-alt'></i>
-                <a href="forms.html">Forms</a>
+                <a href="adminwines.php">Wines</a>
             </li>
             <li class='launcher'>
                 <i class='icon-table'></i>
@@ -195,13 +195,17 @@
 </div>
 <!-- Footer -->
 <!-- Javascripts -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script><script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script><script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script><script src="assets/javascripts/application-985b892b.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script>
+<script src="../js/admin.dashboard.js" type="text/javascript"></script>
+<script src="../controllers/wine_controller.js" type="text/javascript"></script>
 <!-- Google Analytics -->
 <script>
-    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g,s)}(document,'script'));
+//    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+//    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+//        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+//        s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
 </body>
 </html>
