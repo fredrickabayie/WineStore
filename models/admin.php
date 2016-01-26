@@ -119,7 +119,8 @@ class Admin extends Adb
      * @param $image
      * @return bool|mysqli_result
      */
-    public function insertWine ($wine_id, $wine_name, $wine_type, $year, $winery_id, $description, $image) {
+    public function insertWine ($wine_id, $wine_name, $wine_type, $year, $winery_id, $description, $image)
+    {
         $insertWineQuery = "INSERT
                             INTO `wine`(`wine_id`, `wine_name`, `wine_type`, `year`, `winery_id`, `description`, `image`)
                             VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -127,7 +128,50 @@ class Admin extends Adb
         if ($statement = $this->prepare($insertWineQuery)) {
             $statement->bind_param("sssssss", $wine_id, $wine_name, $wine_type, $year, $winery_id, $description, $image);
             return $statement->execute();
-//            return $statement->get_result();
+        }
+    }
+
+    /**
+     * Function UpdateWine
+     *
+     * Updating a wine in the database by editing
+     * the name, type, year, winery id, description
+     * and image of the wine by its id
+     *
+     * @param $wine_id
+     * @param $wine_name
+     * @param $wine_type
+     * @param $year
+     * @param $winery_id
+     * @param $description
+     * @param $image
+     * @return bool
+     */
+    public function updateWine ($wine_id, $wine_name, $wine_type, $year, $winery_id, $description, $image)
+    {
+        $updateWineQuery = "UPDATE `wine`
+                            SET `wine_name`=?,`wine_type`=?,`year`=?,`winery_id`=?,`description`=?,`image`=?
+                            WHERE `wine_id`=?";
+
+        if ($statement = $this->prepare($updateWineQuery)) {
+            $statement->bind_param("sssssss", $wine_name, $wine_type, $year, $winery_id, $description, $image, $wine_id);
+            return $statement->execute();
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -29,6 +29,10 @@ if ( isset ( $_REQUEST [ 'cmd' ] ) )
             insertWine();
             break;
 
+        case 5:
+            updateWine();
+            break;
+
         default:
             echo '{"result":0,status:"unknown command"}';
             break;
@@ -156,3 +160,36 @@ function insertWine ( )
         }
     }
 }//end of add_task ( )
+
+/**
+ * Function to update a wine
+ */
+function updateWine ()
+{
+    if ( isset ( $_REQUEST [ 'addWineName' ] ) && isset ( $_REQUEST [ 'addWineType' ] )
+        && isset ( $_REQUEST [ 'addYear' ] ) && isset ( $_REQUEST ['addWinery'] )
+        && isset ( $_REQUEST ['addDescription'] ) && isset ( $_REQUEST ['addImage'] ) )
+    {
+        include '../models/admin.php';
+
+        $addWineName = $_REQUEST [ 'addWineName' ];
+        $addWineType = $_REQUEST [ 'addWineType' ];
+        $addYear = $_REQUEST [ 'addYear' ];
+        $addWinery = $_REQUEST ['addWinery'];
+        $addDescription = $_REQUEST ['addDescription'];
+        $addImage = $_REQUEST ['addImage'];
+
+        $addWineId = "1049";
+
+        $wine = new Admin ();
+
+        if ($wine->updateWine($addWineId, $addWineName, $addWineType, $addYear, $addWinery, $addDescription, $addImage))
+        {
+            echo ' { "result":1, "status": "Successfully updated a Wine in the database" } ';
+        }
+        else
+        {
+            echo ' { "result":0, "status": "Failed to update a Wine in the database" }';
+        }
+    }
+}
