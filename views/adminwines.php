@@ -133,7 +133,7 @@ else{
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <label class="control-label">Upload Picture</label>
-                                <input type="file" onchange="readURL(this)">
+                                <input type="file" name="uploadImage" id="file" onchange="uploadFile()">
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <img id="blah" src="#" alt="your image" />

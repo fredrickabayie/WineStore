@@ -172,3 +172,29 @@ $(function () {
     });
 });
 
+
+function uploadFile(){
+    var input = document.getElementById("file");
+    file = input.files[0];
+    if(file != undefined){
+        formData= new FormData();
+        if(!!file.type.match(/image.*/)){
+            formData.append("image", file);
+            $.ajax({
+                url: "../views/upload.php",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data){
+                    alert('success');
+                }
+            });
+        }else{
+            alert('Not a valid image!');
+        }
+    }else{
+        alert('Input something!');
+    }
+}
+

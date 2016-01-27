@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02694673-e63e-423a-a1b9-14a93f48026c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/upload.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/admin_controller.js" afterPath="$PROJECT_DIR$/controllers/admin_controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/adminwines.php" afterPath="$PROJECT_DIR$/views/adminwines.php" />
     </list>
@@ -49,7 +51,7 @@
       <file leaf-file-name="admin_controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/admin_controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.25">
+            <state vertical-scroll-proportion="-48.5">
               <caret line="242" column="51" selection-start-line="242" selection-start-column="51" selection-end-line="242" selection-end-column="51" />
               <folding>
                 <element signature="e#6#96#0#PHP" expanded="true" />
@@ -91,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="adminwines.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="adminwines.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/adminwines.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.921569">
-              <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.27070063">
+              <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -103,15 +105,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin_controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="admin_controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/admin_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.456869">
-              <caret line="139" column="54" selection-start-line="139" selection-start-column="54" selection-end-line="139" selection-end-column="54" />
+            <state vertical-scroll-proportion="-9.888889">
+              <caret line="179" column="8" selection-start-line="179" selection-start-column="8" selection-end-line="179" selection-end-column="8" />
               <folding>
-                <marker date="1453933893000" expanded="true" signature="1786:1823" placeholder="..." />
-                <marker date="1453933893000" expanded="true" signature="1786:1831" placeholder="..." />
+                <marker date="1453936761000" expanded="true" signature="1786:1823" placeholder="..." />
+                <marker date="1453936761000" expanded="true" signature="1786:1831" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="upload.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/upload.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.25">
+              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -175,8 +187,9 @@
         <option value="$PROJECT_DIR$/models/adb.php" />
         <option value="$PROJECT_DIR$/models/admin.php" />
         <option value="$PROJECT_DIR$/controllers/admin_controller.php" />
-        <option value="$PROJECT_DIR$/views/adminwines.php" />
+        <option value="$PROJECT_DIR$/views/upload.php" />
         <option value="$PROJECT_DIR$/controllers/admin_controller.js" />
+        <option value="$PROJECT_DIR$/views/adminwines.php" />
       </list>
     </option>
   </component>
@@ -366,7 +379,7 @@
     <property name="JavaScriptPreferStrict" value="true" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/models/node_modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../test" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -522,8 +535,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="85" column="49" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="49" />
           <folding>
-            <marker date="1453933893000" expanded="true" signature="1786:1823" placeholder="..." />
-            <marker date="1453933893000" expanded="true" signature="1786:1831" placeholder="..." />
+            <marker date="1453936761000" expanded="true" signature="1786:1823" placeholder="..." />
+            <marker date="1453936761000" expanded="true" signature="1786:1831" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -884,19 +897,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/adminwines.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.921569">
-          <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/admin_controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.25">
+        <state vertical-scroll-proportion="-48.5">
           <caret line="242" column="51" selection-start-line="242" selection-start-column="51" selection-end-line="242" selection-end-column="51" />
           <folding>
             <element signature="e#6#96#0#PHP" expanded="true" />
@@ -904,13 +907,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.25">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/admin_controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.456869">
-          <caret line="139" column="54" selection-start-line="139" selection-start-column="54" selection-end-line="139" selection-end-column="54" />
+        <state vertical-scroll-proportion="-9.888889">
+          <caret line="179" column="8" selection-start-line="179" selection-start-column="8" selection-end-line="179" selection-end-column="8" />
           <folding>
-            <marker date="1453933893000" expanded="true" signature="1786:1823" placeholder="..." />
-            <marker date="1453933893000" expanded="true" signature="1786:1831" placeholder="..." />
+            <marker date="1453936761000" expanded="true" signature="1786:1823" placeholder="..." />
+            <marker date="1453936761000" expanded="true" signature="1786:1831" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/adminwines.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27070063">
+          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
