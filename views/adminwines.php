@@ -49,7 +49,7 @@ else{
                 </li>
                 <li class='divider'></li>
                 <li>
-                    <a href="/">Sign out</a>
+                    <a href="" id="logout" onclick="logout()">Sign out</a>
                 </li>
             </ul>
         </li>
@@ -309,21 +309,21 @@ else{
 <!--<script src="../controllers/wine_controller.js" type="text/javascript"></script>-->
 
 <!-- Google Analytics -->
-<script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#blah')
-                    .attr('src', e.target.result)
-                    .width(150)
-                    .height(200);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
+<!--<script>-->
+<!--    function readURL(input) {-->
+<!--        if (input.files && input.files[0]) {-->
+<!--            var reader = new FileReader();-->
+<!---->
+<!--            reader.onload = function (e) {-->
+<!--                $('#blah')-->
+<!--                    .attr('src', e.target.result)-->
+<!--                    .width(150)-->
+<!--                    .height(200);-->
+<!--            };-->
+<!---->
+<!--            reader.readAsDataURL(input.files[0]);-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>

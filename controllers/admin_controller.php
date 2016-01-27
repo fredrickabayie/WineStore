@@ -92,7 +92,13 @@ function logout()
     session_start();
     if ( isset($_SESSION['username']))
     {
-        session_destroy();
+        if (session_destroy()) {
+            header("Location: ../views/login.php");
+            echo '{"result":1, "Sessions cleared"}';
+        }
+        else {
+            echo '{"result":0, "Failed to clear sessions"}';
+        }
     }
 }
 

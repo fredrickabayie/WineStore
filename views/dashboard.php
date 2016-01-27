@@ -48,7 +48,7 @@ else{
                 </li>
                 <li class='divider'></li>
                 <li>
-                    <a href="/">Sign out</a>
+                    <a href="" id="logout" onclick="logout()">Sign out</a>
                 </li>
             </ul>
         </li>
@@ -156,7 +156,7 @@ else{
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script>
 <script src="../js/admin.dashboard.js" type="text/javascript"></script>
-<script src="../controllers/wine_controller.js" type="text/javascript"></script>
+<script src="../controllers/admin_controller.js" type="text/javascript"></script>
 <!-- Google Analytics -->
 <script>
 //    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

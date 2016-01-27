@@ -111,4 +111,14 @@ $(function () {
     });
 });
 
+function logout() {
+    "use strict";
+    var url = "../controllers/admin_controller.php?cmd=7", obj;
+
+    obj = sendRequest(url);
+    if (obj.result === 1) {
+        window.location.replace("login.php");
+    }
+}
+
 
