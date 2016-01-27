@@ -2,7 +2,6 @@
 session_start();
 if ( isset ( $_SESSION [ 'LOGIN' ] )  )
 {
-    echo "login";
 }
 else{
     header("Location: login.php");
@@ -31,28 +30,6 @@ else{
         <img src="../img/winestoreshop-logo.png" alt="#" class="img-responsive center-block" width="150" height="150" style="margin-top: -15px">
     </a>
     <ul class='nav navbar-nav pull-right'>
-        <li class='dropdown'>
-            <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
-                <i class='icon-envelope'></i>
-                Messages
-                <span class='badge'>5</span>
-                <b class='caret'></b>
-            </a>
-            <ul class='dropdown-menu'>
-                <li>
-                    <a href='#'>New message</a>
-                </li>
-                <li>
-                    <a href='#'>Inbox</a>
-                </li>
-                <li>
-                    <a href='#'>Out box</a>
-                </li>
-                <li>
-                    <a href='#'>Trash</a>
-                </li>
-            </ul>
-        </li>
         <li>
             <a href='#'>
                 <i class='icon-cog'></i>
@@ -62,7 +39,7 @@ else{
         <li class='dropdown user'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
                 <i class='icon-user'></i>
-                <strong>John DOE</strong>
+                <strong><?php echo $_SESSION['username'];?></strong>
                 <img class="img-rounded" src="http://placehold.it/20x20/ccc/777" />
                 <b class='caret'></b>
             </a>
@@ -90,38 +67,6 @@ else{
             <li class='active launcher'>
                 <i class='icon-file-text-alt'></i>
                 <a href="adminwines.php">Wines</a>
-            </li>
-            <li class='launcher'>
-                <i class='icon-table'></i>
-                <a href="tables.html">Tables</a>
-            </li>
-            <li class='launcher dropdown hover'>
-                <i class='icon-flag'></i>
-                <a href='#'>Reports</a>
-                <ul class='dropdown-menu'>
-                    <li class='dropdown-header'>Launcher description</li>
-                    <li>
-                        <a href='#'>Action</a>
-                    </li>
-                    <li>
-                        <a href='#'>Another action</a>
-                    </li>
-                    <li>
-                        <a href='#'>Something else here</a>
-                    </li>
-                </ul>
-            </li>
-            <li class='launcher'>
-                <i class='icon-bookmark'></i>
-                <a href='#'>Bookmarks</a>
-            </li>
-            <li class='launcher'>
-                <i class='icon-cloud'></i>
-                <a href='#'>Backup</a>
-            </li>
-            <li class='launcher'>
-                <i class='icon-bug'></i>
-                <a href='#'>Feedback</a>
             </li>
         </ul>
         <div data-toggle='tooltip' id='beaker' title='Made by Wine Store'></div>

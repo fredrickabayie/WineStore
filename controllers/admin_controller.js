@@ -70,7 +70,7 @@ $(document).ready(function () {
 
 $(function () {
     "use strict";
-    $("#addWineBtn").click(function() {
+    $("#addWineBtn").click(function () {
         var addWineName, wineType, addWineType, addYear, winery, addWinery, addDescription, obj = "",
             url, addImage;
         addWineName = encodeURI(document.getElementById("addWineName").value);
@@ -101,7 +101,7 @@ $(function () {
 $(function () {
     "use strict";
     $("#loginBtn").click(function () {
-        var url = "../controllers/wine_controller.php?cmd=6&username=" + $("#username").val() +
+        var url = "../controllers/admin_controller.php?cmd=6&username=" + $("#username").val() +
             "&password=" + $("#password").val(), obj;
 
         obj = sendRequest(url);

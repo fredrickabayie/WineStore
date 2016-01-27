@@ -37,6 +37,10 @@ if ( isset ( $_REQUEST [ 'cmd' ] ) )
             login();
             break;
 
+        case 7:
+            logout();
+            break;
+
         default:
             echo '{"result":0,status:"unknown command"}';
             break;
@@ -71,11 +75,25 @@ function login ()
             echo '{"result":1, "user_name":"'.$row['user_name'].'"}';
             session_start();
             $_SESSION [ 'LOGIN' ] = "YES";
+            $_SESSION['username'] = $row['user_name'];
         }
 
         $result->close();
     }
 
+}
+
+
+/**
+ * Function to log the admin out by destroying all sessions
+ */
+function logout()
+{
+    session_start();
+    if ( isset($_SESSION['username']))
+    {
+        session_destroy();
+    }
 }
 
 
@@ -85,9 +103,9 @@ function login ()
  */
 function displayWines ( )
 {
-    session_start();
-    if (isset($_SESSION['LOGIN']))
-    {
+//    session_start();
+//    if (isset($_SESSION['LOGIN']))
+//    {
         include_once '../models/admin.php';
         $wine = new Admin ();
 
@@ -107,7 +125,7 @@ function displayWines ( )
         } else {
             echo '{"result":0,"status": "An error occurred for display wines."}';
         }
-    }
+//    }
 }//end of display_all_tasks()
 
 

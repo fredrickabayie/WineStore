@@ -36,7 +36,7 @@
 
 <div style="padding-top: 30px;">
     <div style="background-color: white; padding: 20px; filter: alpha(opacity=80); opacity: 0.9; z-index: 1000; width: 600px; margin: 200px auto 0 auto;">
-        <form class="myform" method="post">
+        <form class="myform">
             <div class="form-group">
                 <div class="controls">
                     <img src="../img/winestorelogin.png" alt="#" class="img-responsive center-block" width="250" height="250" style="padding-top: 5px">
@@ -66,7 +66,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script>
 <script src='https://rawgit.com/akm2/simplex-noise.js/master/simplex-noise.js'></script>
 <script src='http://dat-gui.googlecode.com/git/build/dat.gui.min.js'></script>
-<script type="text/javascript" src="../js/main.min.js"></script>
+<!--<script type="text/javascript" src="../js/main.min.js"></script>-->
 <script type="text/javascript" src="../js/admin.login.js"></script>
 <script type="text/javascript" src="../controllers/admin_controller.js"></script>
 </body>
