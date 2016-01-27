@@ -77,8 +77,7 @@ else{
     <section id='tools'>
         <ul class='breadcrumb' id='breadcrumb'>
             <li class='title'>Notifications</li>
-            <li><a href="#">Lorem</a></li>
-            <li class='active'><a href="#">ipsum</a></li>
+            <li><a href="#" id="notification"></a></li>
         </ul>
         <div id='toolbar'>
             <div class='btn-group'>
@@ -145,7 +144,7 @@ else{
                     <div class="form-actions">
                         <button id="addWineBtn" class="btn btn-success" type="button">Insert</button>
                         <button id="updateWineBtn" class="btn btn-primary" type="button">Update</button>
-                        <a id="clearBtn" class="btn btn-default" href="#">Clear</a>
+                        <a id="clearBtn" class="btn btn-default" href="#" onclick="clearAddWineForm()">Clear</a>
                     </div>
                 </form>
             </div>
@@ -309,21 +308,21 @@ else{
 <!--<script src="../controllers/wine_controller.js" type="text/javascript"></script>-->
 
 <!-- Google Analytics -->
-<!--<script>-->
-<!--    function readURL(input) {-->
-<!--        if (input.files && input.files[0]) {-->
-<!--            var reader = new FileReader();-->
-<!---->
-<!--            reader.onload = function (e) {-->
-<!--                $('#blah')-->
-<!--                    .attr('src', e.target.result)-->
-<!--                    .width(150)-->
-<!--                    .height(200);-->
-<!--            };-->
-<!---->
-<!--            reader.readAsDataURL(input.files[0]);-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 </body>
 </html>

@@ -41,6 +41,10 @@ if ( isset ( $_REQUEST [ 'cmd' ] ) )
             logout();
             break;
 
+        case 8:
+            selectWine();
+            break;
+
         default:
             echo '{"result":0,status:"unknown command"}';
             break;
@@ -103,7 +107,6 @@ function logout()
 }
 
 
-
 /**
  * Function to display all wines
  */
@@ -131,8 +134,7 @@ function displayWines ( )
         } else {
             echo '{"result":0,"status": "An error occurred for display wines."}';
         }
-//    }
-}//end of display_all_tasks()
+}
 
 
 /**
@@ -209,11 +211,9 @@ function insertWine ( )
         $addDescription = $_REQUEST ['addDescription'];
         $addImage = $_REQUEST ['addImage'];
 
-        $addWineId = "1049";
-
         $wine = new Admin ();
 
-        if ($wine->insertWine($addWineId, $addWineName, $addWineType, $addYear, $addWinery, $addDescription, $addImage))
+        if ($wine->insertWine(null, $addWineName, $addWineType, $addYear, $addWinery, $addDescription, $addImage))
         {
             echo ' { "result":1, "status": "Successfully added a new Wine to the database" } ';
         }
@@ -223,6 +223,7 @@ function insertWine ( )
         }
     }
 }//end of add_task ( )
+
 
 /**
  * Function to update a wine
@@ -253,6 +254,31 @@ function updateWine ()
         else
         {
             echo ' { "result":0, "status": "Failed to update a Wine in the database" }';
+        }
+    }
+}
+
+
+/**
+ * Function to select wine
+ */
+function selectWine ( )
+{
+    if (isset($_REQUEST['wine_id'])) {
+        include_once '../models/admin.php';
+        $wine = new Admin ();
+        $wine_id = $_REQUEST['wine_id'];
+
+        if ($result = $wine->selectWine($wine_id)) {
+            $row = $result->fetch_assoc();
+            echo '{"result":1, "wines": [';
+
+                echo '{"wine_id": "' . $row ["wine_id"] . '", "wine_name": "' . $row ["wine_name"] . '",
+            "winery_name": "' . $row ["winery_name"] . '", "wine_type": "' . $row["wine_type"] . '", "year": "' . $row["year"] . '"}';
+
+            echo ']}';
+        } else {
+            echo '{"result":0,"status": "An error occurred for display wines."}';
         }
     }
 }

@@ -30,7 +30,7 @@ $(document).ready(function () {
             div += "<i class='icon-zoom-in'></i>";
             div += "</a>";
             div += "<a class='btn btn-info' data-toggle='tooltip' href='#' title='Edit'>";
-            div += "<i class='icon-edit'></i>";
+            div += "<i class='icon-edit' onclick='getWineToUpdate(" + obj.wines[index].wine_id + ")'></i>";
             div += "</a>";
             div += "<a class='btn btn-danger' data-toggle='tooltip' href='#' title='Delete'>";
             div += "<i class='icon-trash'></i></a></td></tr>";
@@ -71,7 +71,7 @@ $(document).ready(function () {
 $(function () {
     "use strict";
     $("#addWineBtn").click(function () {
-        var addWineName, wineType, addWineType, addYear, winery, addWinery, addDescription, obj = "",
+        var addWineName, wineType, addWineType, addYear, winery, addWinery, addDescription, obj,
             url, addImage;
         addWineName = encodeURI(document.getElementById("addWineName").value);
         wineType = document.getElementById("addWineType");
@@ -87,11 +87,7 @@ $(function () {
 
         obj = sendRequest(url);
         if (obj.result === 1) {
-            //for (index in obj.winery ) {
-            //    option += "<option value=" + obj.winery[index].winery_id + ">" + obj.winery[index].winery_name + "</option>";
-            //}
-            //$("#addWinery").html(option);
-            alert("added");
+            $("#notification").html("New Wine Added");
         }
     });
 });
@@ -111,6 +107,8 @@ $(function () {
     });
 });
 
+
+//Function to handle logout
 function logout() {
     "use strict";
     var url = "../controllers/admin_controller.php?cmd=7", obj;
@@ -120,5 +118,12 @@ function logout() {
         window.location.replace("login.php");
     }
 }
+
+function getWineToUpdate(id)
+{
+    "use strict";
+    alert(id);
+}
+
 
 
