@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="../css/admin.login.css" type="text/css">
     <link rel="stylesheet" href="../css/style.min.css">
     <link rel="stylesheet" href="../css/custom.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../js/modernizr.min.js"></script>
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -60,9 +61,13 @@
     </div>
 </div>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script>
 <script src='https://rawgit.com/akm2/simplex-noise.js/master/simplex-noise.js'></script>
 <script src='http://dat-gui.googlecode.com/git/build/dat.gui.min.js'></script>
 <script type="text/javascript" src="../js/main.min.js"></script>
 <script type="text/javascript" src="../js/admin.login.js"></script>
+<script type="text/javascript" src="../controllers/admin_controller.js"></script>
 </body>
 </html>

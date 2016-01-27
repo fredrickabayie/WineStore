@@ -1,17 +1,8 @@
 <?php
 session_start();
-if ( isset ( $_SESSION [ 'user_type' ] )  )
+if ( isset ( $_SESSION [ 'LOGIN' ] )  )
 {
-    if ( $_SESSION [ 'user_type' ] == 'regular' )
-    {
-        $user_id = $_SESSION [ 'user_id'];
-        $path = $_SESSION ['path'];
-    }
-    else{
-//        echo "<input class='user_id' type='text' value='no id'>";
-        header("Location: login.php");
-        exit();
-    }
+    echo "login";
 }
 else{
     header("Location: login.php");

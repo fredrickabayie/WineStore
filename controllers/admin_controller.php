@@ -33,6 +33,10 @@ if ( isset ( $_REQUEST [ 'cmd' ] ) )
             updateWine();
             break;
 
+        case 6:
+            login();
+            break;
+
         default:
             echo '{"result":0,status:"unknown command"}';
             break;
@@ -41,33 +45,68 @@ if ( isset ( $_REQUEST [ 'cmd' ] ) )
 }//end of if
 
 
+/**
+ * Function to login by admin
+ */
+function login ()
+{
+    if ( isset ( $_REQUEST['username'] ) & isset ( $_REQUEST['password'] ) )
+    {
+        include_once '../models/wine.php';
+        $obj = new Wine ( );
+        $username = stripslashes($_REQUEST ['username']);
+        $password = stripslashes($_REQUEST ['password']);
+        $username = $obj->real_escape_string($username);
+        $password = $obj->real_escape_string($password);
+
+        $result = $obj->login($username, $password);
+        $row = $result->fetch_assoc();
+
+        if ( !$row )
+        {
+            echo '{"result":0, "message":"Failed to login"}';
+        }
+        else
+        {
+            echo '{"result":1, "user_name":"'.$row['user_name'].'"}';
+            session_start();
+            $_SESSION [ 'LOGIN' ] = "YES";
+        }
+
+        $result->close();
+    }
+
+}
+
+
 
 /**
  * Function to display all wines
  */
 function displayWines ( )
 {
-    include_once '../models/admin.php';
-    $wine = new Admin ( );
-
-    if ( $result = $wine->displayWine() )
+    session_start();
+    if (isset($_SESSION['LOGIN']))
     {
-        $row = $result->fetch_assoc();
-        echo '{"result":1, "wines": [';
-        while ( $row )
-        {
-            echo '{"wine_id": "'.$row ["wine_id"].'", "wine_name": "'.$row ["wine_name"].'",
-            "winery_name": "'.$row ["winery_name"].'",
-            "wine_type": "'.$row["wine_type"].'", "year": "'.$row["year"].'"}';
+        include_once '../models/admin.php';
+        $wine = new Admin ();
 
-            if ($row = $result->fetch_assoc() )   {
-                echo ',';
+        if ($result = $wine->displayWine()) {
+            $row = $result->fetch_assoc();
+            echo '{"result":1, "wines": [';
+            while ($row) {
+                echo '{"wine_id": "' . $row ["wine_id"] . '", "wine_name": "' . $row ["wine_name"] . '",
+            "winery_name": "' . $row ["winery_name"] . '",
+            "wine_type": "' . $row["wine_type"] . '", "year": "' . $row["year"] . '"}';
+
+                if ($row = $result->fetch_assoc()) {
+                    echo ',';
+                }
             }
+            echo ']}';
+        } else {
+            echo '{"result":0,"status": "An error occurred for display wines."}';
         }
-        echo ']}';
-    }   else
-    {
-        echo '{"result":0,"status": "An error occurred for display wines."}';
     }
 }//end of display_all_tasks()
 
