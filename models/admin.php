@@ -169,7 +169,7 @@ class Admin extends Adb
      */
     public function selectWine($wine_id)
     {
-        $selectWineQuery = "SELECT `wine`.`wine_id`, `wine_type`.`wine_type`, `wine`.`wine_name`, `winery`.`winery_name`, `wine`.`year`
+        $selectWineQuery = "SELECT `wine`.`wine_id`, `wine_type`.`wine_type`, `wine`.`wine_name`, `winery`.`winery_name`, `wine`.`year`, `wine`.`description`
                             FROM `wine`
                             JOIN `wine_type`
                             JOIN `winery`
