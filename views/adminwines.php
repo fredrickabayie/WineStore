@@ -145,6 +145,7 @@ else{
                         <button id="addWineBtn" class="btn btn-success" type="button">Insert</button>
                         <button id="updateWineBtn" class="btn btn-primary" type="button">Update</button>
                         <a id="clearBtn" class="btn btn-default" href="#" onclick="clearAddWineForm()">Clear</a>
+                        <input id="addWineId" style="display: none">
                     </div>
                 </form>
             </div>

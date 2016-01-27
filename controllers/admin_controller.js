@@ -132,6 +132,7 @@ function getWineToUpdate(id) {
         $("#addWineName").val(obj.wine_name);
         $("#addYear").val(obj.year);
         $("#addDescription").val(obj.description);
+        $("#addWineId").val(obj.wine_id);
         //$("#addWineType option:contains(" + obj.wine_type + ")");
         //$("#addWineType").val(obj.wine_type);
         $("#addWineType").find('option[value="' + obj.wine_type + '"]').prop("selected", true);
@@ -143,25 +144,27 @@ function getWineToUpdate(id) {
 $(function () {
     "use strict";
     $("#updateWineBtn").click(function () {
-        var addWineName, wineType, addWineType, addYear, winery, addWinery, addDescription, obj,
-            url, addImage;
-        addWineName = encodeURI(document.getElementById("addWineName").value);
+        var updateWineName, wineType, updateWineType, updateYear, winery, updateWinery, updateDescription, obj,
+            url, updateImage, updateWineId;
+        updateWineId = encodeURI(document.getElementById("addWineId").value);
+        updateWineName = encodeURI(document.getElementById("addWineName").value);
         wineType = document.getElementById("addWineType");
-        addWineType = wineType.options[wineType.selectedIndex].value;
-        addYear = encodeURI(document.getElementById("addYear").value);
+        updateWineType = wineType.options[wineType.selectedIndex].value;
+        updateYear = encodeURI(document.getElementById("addYear").value);
         winery = document.getElementById("addWinery");
-        addWinery = winery.options[winery.selectedIndex].value;
-        addDescription = encodeURI(document.getElementById("addDescription").value);
-        addImage = "../img";
+        updateWinery = winery.options[winery.selectedIndex].value;
+        updateDescription = encodeURI(document.getElementById("addDescription").value);
+        updateImage = "../img";
 
         url = "../controllers/admin_controller.php?cmd=5&updateWineName=" + updateWineName + "&updateWineType=" + updateWineType +
-            "&updateYear=" + updateYear + "&updateWinery=" + updateWinery + "&updateDescription=" + updateDescription + "&updateImage=" + updateImage;
+            "&updateYear=" + updateYear + "&updateWinery=" + updateWinery + "&updateDescription=" + updateDescription + "&updateImage=" + updateImage +
+            "&updateWineId=" + updateWineId;
 
         obj = sendRequest(url);
         if (obj.result === 1) {
-            $("#notification").html("New Wine Added");
+            $("#notification").html("Wine Updated");
         } else {
-            $("#notification").html("Failed to add wine");
+            $("#notification").html("Failed to update wine");
         }
     });
 });
