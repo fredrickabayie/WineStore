@@ -125,7 +125,7 @@ function logout() {
 //Function to send a request for a single wine by id
 function getWineToUpdate(id) {
     "use strict";
-    var obj, url = "../controllers/admin_controller.php?cmd=8&wine_id=" + id;
+    var obj, wineType, url = "../controllers/admin_controller.php?cmd=8&wine_id=" + id;
 
     obj = sendRequest(url);
     if (obj.wine_name !== null) {
@@ -133,9 +133,12 @@ function getWineToUpdate(id) {
         $("#addYear").val(obj.year);
         $("#addDescription").val(obj.description);
         $("#addWineId").val(obj.wine_id);
-        //$("#addWineType option:contains(" + obj.wine_type + ")");
-        //$("#addWineType").val(obj.wine_type);
-        $("#addWineType").find('option[value="' + obj.wine_type + '"]').prop("selected", true);
+        $("#addWineType").find("option").filter(function () {
+            return ($(this).text() === obj.wine_type); //To select Blue
+        }).prop('selected', true);
+        $("#addWinery").find("option").filter(function () {
+            return ($(this).text() === obj.winery_name); //To select Blue
+        }).prop('selected', true);
     }
 }
 
