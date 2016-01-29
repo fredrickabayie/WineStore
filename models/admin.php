@@ -66,7 +66,10 @@ class Admin extends Adb
                       ORDER BY `wine`.`wine_id` DESC
                       LIMIT 20";
 
-        return $this->query($wineQuery);
+        if ($statement = $this->prepare($wineQuery)) {
+            $statement->execute();
+            return $statement->get_result();
+        }
     }
 
     /**
@@ -83,7 +86,10 @@ class Admin extends Adb
         $wineTypeQuery = "SELECT `wine_type`.`wine_type_id`, `wine_type`.`wine_type`
                           FROM `wine_type`";
 
-        return $this->query($wineTypeQuery);
+        if ($statement = $this->prepare($wineTypeQuery)) {
+            $statement->execute();
+            return $statement->get_result();
+        }
     }
 
     /**
@@ -100,7 +106,10 @@ class Admin extends Adb
         $wineryQuery = "SELECT `winery`.`region_id`, `winery`.`winery_id`, `winery`.`winery_name`
                         FROM `winery`";
 
-        return $this->query($wineryQuery);
+        if ($statement = $this->prepare($wineryQuery)) {
+            $statement->execute();
+            return $statement->get_result();
+        }
     }
 
     /**
