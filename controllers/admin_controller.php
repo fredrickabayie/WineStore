@@ -45,6 +45,10 @@ if ( isset ( $_REQUEST [ 'cmd' ] ) )
             selectWine();
             break;
 
+        case 9:
+            searchWine();
+            break;
+
         default:
             echo '{"result":0,status:"unknown command"}';
             break;
@@ -112,28 +116,40 @@ function logout()
  */
 function displayWines ( )
 {
-//    session_start();
-//    if (isset($_SESSION['LOGIN']))
-//    {
-        include_once '../models/admin.php';
-        $wine = new Admin ();
+    $num_perPage = 20;
+    if (isset($_REQUEST['page'])) {
+        $page = $_REQUEST['page'];
+    } else {
+        $page = 1;
+    }
 
-        if ($result = $wine->displayWine()) {
-            $row = $result->fetch_assoc();
-            echo '{"result":1, "wines": [';
-            while ($row) {
-                echo '{"wine_id": "' . $row ["wine_id"] . '", "wine_name": "' . $row ["wine_name"] . '",
-            "winery_name": "' . $row ["winery_name"] . '",
-            "wine_type": "' . $row["wine_type"] . '", "year": "' . $row["year"] . '"}';
+    $start_from = ($page - 1) * $num_perPage;
+    include_once '../models/admin.php';
+    $wine = new Admin ();
 
-                if ($row = $result->fetch_assoc()) {
-                    echo ',';
-                }
+    if ($result = $wine->displayWine($start_from, $num_perPage)) {
+        $row = $result->fetch_assoc();
+
+        $num = $wine->countWine();
+        $total = $num->fetch_assoc();
+        $total_wines = $total["wine_id"];
+
+        $total_pages = ceil($total_wines / $num_perPage);
+
+        echo '{"result":1, "wines": [';
+        while ($row) {
+            echo '{"wine_id":"'.$row["wine_id"].'", "wine_name":"'.$row["wine_name"].'",
+        "winery_name":"'.$row["winery_name"].'", "wine_type":"'.$row["wine_type"].'",
+        "year":"'.$row["year"].'", "total_pages": "'.$total_pages.'", "total_records": "'.$total_wines.'"}';
+
+            if ($row = $result->fetch_assoc()) {
+                echo ',';
             }
-            echo ']}';
-        } else {
-            echo '{"result":0,"status": "An error occurred for display wines."}';
         }
+        echo ']}';
+    } else {
+        echo '{"result":0,"status": "An error occurred for display wines."}';
+    }
 }
 
 
@@ -280,3 +296,38 @@ function selectWine ( )
         }
     }
 }
+
+
+/**
+ * Function to search for a task
+ */
+function searchWine ( )
+{
+    if ( isset ( $_REQUEST [ 'searchWord' ] ) )
+    {
+        include_once '../models/wine.php';
+        $wine = new Wine ( );
+
+        $searchWord = $_REQUEST [ 'searchWord' ];
+
+        if ( $result = $wine->searchWine ( $searchWord ) )
+        {
+            $row = $result->fetch_assoc ( );
+            echo '{"result":1, "wines": [';
+            while ( $row )
+            {
+                echo '{"wine_id": "'.$row ["wine_id"].'", "wine_name": "'.$row ["wine_name"].'",
+            "winery_name": "'.$row ["winery_name"].'", "cost": "'.$row ["cost"].'",
+            "wine_type": "'.$row["wine_type"].'", "year": "'.$row["year"].'"}';
+
+                if ( $row = $result->fetch_assoc() ) {
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }   else
+        {
+            echo '{"result":0,"status": "An error occurred for select product."}';
+        }
+    }
+}//end of search_task()

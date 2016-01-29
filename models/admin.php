@@ -53,9 +53,11 @@ class Admin extends Adb
      * wine name, the year of manufacture, the wine id
      * and winery name
      *
+     * @param $limit
+     * @param $offset
      * @return bool|mysqli_result
      */
-    public function displayWine()
+    public function displayWine($limit, $offset)
     {
         $wineQuery = "SELECT `wine`.`wine_id`, `wine_type`.`wine_type`, `wine`.`wine_name`, `winery`.`winery_name`, `wine`.`year`
                       FROM `wine`
@@ -63,10 +65,11 @@ class Admin extends Adb
                       JOIN `winery`
                       ON `wine`.`wine_type` = `wine_type`.`wine_type_id`
                       AND `wine`.`winery_id` = `winery`.`winery_id`
-                      ORDER BY `wine`.`wine_id` DESC
-                      LIMIT 20";
+                      ORDER BY `wine`.`wine_id` ASC
+                      LIMIT ?,?";
 
         if ($statement = $this->prepare($wineQuery)) {
+            $statement->bind_param("ss", $limit, $offset);
             $statement->execute();
             return $statement->get_result();
         }
@@ -194,6 +197,25 @@ class Admin extends Adb
         }
     }
 
+    /**
+     * Function CountWine
+     *
+     * Counting the total number of wine in the
+     * database
+     *
+     * @return bool|mysqli_result
+     */
+    public function countWine()
+    {
+        $countWineQuery = "SELECT COUNT(*)
+                           AS `wine_id`
+                           FROM `wine`";
+
+        if ($statement = $this->prepare($countWineQuery)) {
+            $statement->execute();
+            return $statement->get_result();
+        }
+    }
 
 }
 

@@ -210,40 +210,23 @@ else{
             </table>
 
             <div class='panel-footer'>
-                <ul class='pagination pagination-sm'>
-                    <li>
-                        <a href='#'>«</a>
-                    </li>
-                    <li class='active'>
-                        <a href='#'>1</a>
-                    </li>
-                    <li>
-                        <a href='#'>2</a>
-                    </li>
-                    <li>
-                        <a href='#'>3</a>
-                    </li>
-                    <li>
-                        <a href='#'>4</a>
-                    </li>
-                    <li>
-                        <a href='#'>5</a>
-                    </li>
-                    <li>
-                        <a href='#'>6</a>
-                    </li>
-                    <li>
-                        <a href='#'>7</a>
-                    </li>
-                    <li>
-                        <a href='#'>8</a>
-                    </li>
-                    <li>
-                        <a href='#'>»</a>
-                    </li>
+                <ul class='pagination pagination-sm' id="pagination">
+<!--                    <li>-->
+<!--                        <a href='#'>«</a>-->
+<!--                    </li>-->
+<!--                    <li class='active'>-->
+<!--                        <a href='#'>1</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href='#'>2</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href='#'>»</a>-->
+<!--                    </li>-->
                 </ul>
-                <div class='pull-right'>
-                    Showing 1 to 10 of 32 entries
+                <div class='pull-right' id="paginationResult">
+                    Page <a></a>
+<!--                    Showing 1 to 10 of 32 entries-->
                 </div>
             </div>
 
@@ -253,7 +236,7 @@ else{
 </div>
 <!-- Footer -->
 <!-- Javascripts -->
-<!--<script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>-->
+<script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <!--<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
@@ -272,7 +255,7 @@ else{
                 $('#blah')
                     .attr('src', e.target.result)
                     .width(150)
-                    .height(200);
+                    .height(150);
             };
 
             reader.readAsDataURL(input.files[0]);

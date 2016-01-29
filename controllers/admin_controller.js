@@ -13,11 +13,17 @@ function sendRequest(u) {
 }//end of sendRequest(u)
 
 
+$(function () {
+    "use strict";
+    displayWines("1");
+});
+
 
 //Function to display the wines
-$(document).ready(function () {
+//$(document).ready(function () {
+function displayWines(page) {
     "use strict";
-    var obj, index, div = "", url = "../controllers/admin_controller.php?cmd=1";
+    var obj, pageNum = 1, index, pagination = "", div = "", url = "../controllers/admin_controller.php?cmd=1&page=" + page;
 
     obj = sendRequest(url);
     if (obj.result === 1) {
@@ -32,12 +38,55 @@ $(document).ready(function () {
             div += "<a class='btn btn-info' onclick='getWineToUpdate(" + obj.wines[index].wine_id + ")' data-toggle='tooltip' href='#' title='Edit'>";
             div += "<i class='icon-edit'></i>";
             div += "</a>";
-            div += "<a class='btn btn-danger' data-toggle='tooltip' href='#' title='Delete'>";
+            div += "<a class='btn btn-danger' data-toggle='tooltip' href='#' id='deleteBtn' title='Delete'>";
             div += "<i class='icon-trash'></i></a></td></tr>";
         }
         $("#viewWines").html(div);
+
+        if (page === 1)
+            pagination += "<li><a href='#' onclick='displayWines(1)'>First</a></li>";
+         else
+            pagination += "<li><a href='#' onclick='displayWines(" + (parseInt(page) - 1) + ")'>Previous</a></li>";
+
+
+        for (var i = parseInt(page)-6; i<=parseInt(page)+6; i++) {
+            if (i >= 1 && i <= obj.wines[index].total_pages) {
+                if (i === page)
+                    pagination += "<li><a href='#' style='background-color: lightgrey' onclick='displayWines(" + i + ")'><b>" + i + "</b></a></li>";
+                else
+                    pagination += "<li><a href='#' onclick='displayWines(" + i + ")'>" + i + "</a></li>";
+            }
+        }
+
+        if (page === obj.wines[index].total_pages) {
+            pagination += "<li><a href='#'>Last</a></li>";
+        } else {
+            pagination += "<li><a href='#' onclick='displayWines(" + (parseInt(page) + 1) + ")'>Next</a></li>";
+        }
+
+        $("#pagination").html(pagination);
+        $("#paginationResult").find("a").html(page + " <a style='color: black'>of</a> " + obj.wines[index].total_pages);
     }
+}
+
+
+
+$(function () {
+    'use strict';
+    $('#deleteBtn').click(function() {
+        console.log("dsfds");
+        //$(this).closest('tr')
+        //    .children('td')
+        //    .animate({ padding: 0 })
+        //    .wrapInner('<div />')
+        //    .children()
+        //    .slideUp(function() { $(this).closest('tr').remove(); });
+        //return false;
+    });
 });
+
+
+
 
 
 //Function that populates the wine type button dropdown
