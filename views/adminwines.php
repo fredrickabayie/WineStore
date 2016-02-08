@@ -1,9 +1,7 @@
 <?php
 session_start();
-if ( isset ( $_SESSION [ 'LOGIN' ] )  )
-{
-}
-else{
+if (isset ($_SESSION ['LOGIN'])) {
+} else {
     header("Location: login.php");
     exit();
 }
@@ -17,17 +15,19 @@ else{
     <meta content='lab2023' name='author'>
     <meta content='' name='description'>
     <meta content='' name='keywords'>
-    <link href="../css/admin.dashboard.css" rel="stylesheet" type="text/css" />
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<!--    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">-->
-<!--    <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />-->
+    <link href="../css/admin.dashboard.css" rel="stylesheet" type="text/css"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css"/>
+    <!--    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">-->
+    <!--    <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />-->
 
 </head>
 <body class='main page'>
 <!-- Navbar -->
 <div class='navbar navbar-default' id='navbar'>
     <a class='navbar-brand' href='#'>
-        <img src="../img/winestoreshop-logo.png" alt="#" class="img-responsive center-block" width="150" height="150" style="margin-top: -15px">
+        <img src="../img/winestoreshop-logo.png" alt="#" class="img-responsive center-block" width="150" height="150"
+             style="margin-top: -15px">
     </a>
     <ul class='nav navbar-nav pull-right'>
         <li>
@@ -39,8 +39,8 @@ else{
         <li class='dropdown user'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
                 <i class='icon-user'></i>
-                <strong><?php echo $_SESSION['username'];?></strong>
-                <img class="img-rounded" src="http://placehold.it/20x20/ccc/777" />
+                <strong><?php echo $_SESSION['username']; ?></strong>
+                <img class="img-rounded" src="http://placehold.it/20x20/ccc/777"/>
                 <b class='caret'></b>
             </a>
             <ul class='dropdown-menu'>
@@ -114,29 +114,39 @@ else{
 
                         <div class="form-group row">
                             <div class="col-lg-3 col-sm-6">
-                                <input id="addWineName" class="form-control" placeholder="Wine Name" type="text" data-toggle="tooltip" data-original-title="Wine Name">
+                                <input id="addWineName" class="form-control" placeholder="Wine Name" type="text"
+                                       data-toggle="tooltip" data-original-title="Wine Name">
+                                <br>
                             </div>
                             <div class="col-lg-3 col-sm-6">
-                                <select id="addWineType" class="form-control" data-toggle="tooltip" data-original-title="Wine Type">
+                                <select id="addWineType" class="form-control" data-toggle="tooltip"
+                                        data-original-title="Wine Type">
                                 </select>
+                                <br>
                             </div>
                             <div class="col-lg-3 col-sm-6">
-                                <input id="addYear" class="form-control" placeholder="Year" type="number" data-toggle="tooltip" data-original-title="Year">
+                                <input id="addYear" class="form-control" placeholder="Year" type="number"
+                                       data-toggle="tooltip" data-original-title="Year">
+                                <br>
                             </div>
                             <div class="col-lg-3 col-sm-6">
-                                <select id="addWinery" class="form-control" data-toggle="tooltip" data-original-title="Winery">
+                                <select id="addWinery" class="form-control" data-toggle="tooltip"
+                                        data-original-title="Winery">
                                 </select>
+                                <br>
                             </div>
                             <div class="col-lg-6">
                                 <label class="control-label">Description</label>
-                                <textarea id="addDescription" class="form-control" rows="4" placeholder="Description"></textarea>
+                                <textarea id="addDescription" class="form-control" rows="4"
+                                          placeholder="Description"></textarea>
+                                <br>
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <label class="control-label">Upload Picture</label>
-                                <input type="file" onchange="readURL()">
+                                <input type="file" name="fileToUpload" id="fileToUpload" onchange="readURL(this)">
                             </div>
                             <div class="col-lg-3 col-sm-6">
-                                <img id="blah" src="#" alt="your image" />
+                                <img id="blah" src="#" alt=""/>
                             </div>
                         </div>
                     </fieldset>
@@ -171,7 +181,7 @@ else{
                             <i class='icon-refresh'></i>
                         </a>
                     </div>
-                    <div class='badge'>3 record</div>
+                    <div class='badge'><span id="recordsNumber"></span> records</div>
                 </div>
             </div>
             <div class='panel-body filters'>
@@ -195,7 +205,7 @@ else{
             <table class='table' id="table_id">
                 <thead>
                 <tr>
-<!--                    <th>#</th>-->
+                    <!--                    <th>#</th>-->
                     <th>Wine Name</th>
                     <th>Wine Type</th>
                     <th>Year</th>
@@ -211,22 +221,10 @@ else{
 
             <div class='panel-footer'>
                 <ul class='pagination pagination-sm' id="pagination">
-<!--                    <li>-->
-<!--                        <a href='#'>«</a>-->
-<!--                    </li>-->
-<!--                    <li class='active'>-->
-<!--                        <a href='#'>1</a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href='#'>2</a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href='#'>»</a>-->
-<!--                    </li>-->
+
                 </ul>
                 <div class='pull-right' id="paginationResult">
                     Page <a></a>
-<!--                    Showing 1 to 10 of 32 entries-->
                 </div>
             </div>
 
@@ -236,11 +234,11 @@ else{
 </div>
 <!-- Footer -->
 <!-- Javascripts -->
-<script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<!--<script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>-->
 <!--<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script>
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script>-->
 <script src="../js/admin.dashboard.js" type="text/javascript"></script>
 <script src="../controllers/admin_controller.js" type="text/javascript"></script>
 <!--<script src="../controllers/wine_controller.js" type="text/javascript"></script>-->
@@ -248,17 +246,21 @@ else{
 <!-- Google Analytics -->
 <script>
     function readURL(input) {
+        console.log(input.files[0].name);
+        console.log(input.files[0]);
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
                 $('#blah')
                     .attr('src', e.target.result)
-                    .width(150)
-                    .height(150);
+                    .width(180)
+                    .height(100);
             };
 
             reader.readAsDataURL(input.files[0]);
+//            console.log(reader);
+
         }
     }
 </script>
