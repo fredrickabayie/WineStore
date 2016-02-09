@@ -262,8 +262,10 @@ function login ()
     {
         include_once '../models/wine.php';
         $obj = new Wine ( );
-        $username = $_REQUEST ['username'];
-        $password = $_REQUEST ['password'];
+        $username = stripslashes($_REQUEST ['username']);
+        $password = stripslashes($_REQUEST ['password']);
+        $username = $obj->real_escape_string($username);
+        $password = $obj->real_escape_string($password);
 
         $result = $obj->login($username, $password);
         $row = $result->fetch_assoc();
@@ -274,18 +276,10 @@ function login ()
         }
         else
         {
-//            echo json_encode ( $row );
-//            session_start ( );
-//            $user_type = $row['user_type'];
-//            if ( $user_type == 'admin' )
-//            {
-                echo '{"result":1, "user_name":"'.$row['user_name'].'"}';
-//                $_SESSION ['user_type'] = $user_type;
-//                $_SESSION ['user_id'] = $row['user_id'];
-//                header("Location: home.php");
-//                exit ( );
-//            }
+            echo '{"result":1, "user_name":"'.$row['user_name'].'"}';
         }
+
+        $result->close();
     }
 
 }

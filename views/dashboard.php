@@ -1,3 +1,13 @@
+<?php
+session_start();
+if ( isset ( $_SESSION [ 'LOGIN' ] )  )
+{
+}
+else{
+    header("Location: login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html class='no-js' lang='en'>
 <head>
@@ -8,7 +18,7 @@
     <meta content='' name='description'>
     <meta content='' name='keywords'>
     <link href="../css/admin.dashboard.css" rel="stylesheet" type="text/css" /><link href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />
+<!--    <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />-->
 
 </head>
 <body class='main page'>
@@ -19,28 +29,6 @@
         Hierapolis
     </a>
     <ul class='nav navbar-nav pull-right'>
-        <li class='dropdown'>
-            <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
-                <i class='icon-envelope'></i>
-                Messages
-                <span class='badge'>5</span>
-                <b class='caret'></b>
-            </a>
-            <ul class='dropdown-menu'>
-                <li>
-                    <a href='#'>New message</a>
-                </li>
-                <li>
-                    <a href='#'>Inbox</a>
-                </li>
-                <li>
-                    <a href='#'>Out box</a>
-                </li>
-                <li>
-                    <a href='#'>Trash</a>
-                </li>
-            </ul>
-        </li>
         <li>
             <a href='#'>
                 <i class='icon-cog'></i>
@@ -50,7 +38,7 @@
         <li class='dropdown user'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
                 <i class='icon-user'></i>
-                <strong>John DOE</strong>
+                <strong><?php echo $_SESSION['username'];?></strong>
                 <img class="img-rounded" src="http://placehold.it/20x20/ccc/777" />
                 <b class='caret'></b>
             </a>
@@ -73,44 +61,13 @@
         <ul id='dock'>
             <li class='active launcher'>
                 <i class='icon-dashboard'></i>
-                <a href="dashboard.html">Dashboard</a>
+                <a href="dashboard.php">Dashboard</a>
             </li>
             <li class='launcher'>
                 <i class='icon-file-text-alt'></i>
-                <a href="forms.html">Forms</a>
+                <a href="adminwines.php">Wines</a>
             </li>
-            <li class='launcher'>
-                <i class='icon-table'></i>
-                <a href="tables.html">Tables</a>
-            </li>
-            <li class='launcher dropdown hover'>
-                <i class='icon-flag'></i>
-                <a href='#'>Reports</a>
-                <ul class='dropdown-menu'>
-                    <li class='dropdown-header'>Launcher description</li>
-                    <li>
-                        <a href='#'>Action</a>
-                    </li>
-                    <li>
-                        <a href='#'>Another action</a>
-                    </li>
-                    <li>
-                        <a href='#'>Something else here</a>
-                    </li>
-                </ul>
-            </li>
-            <li class='launcher'>
-                <i class='icon-bookmark'></i>
-                <a href='#'>Bookmarks</a>
-            </li>
-            <li class='launcher'>
-                <i class='icon-cloud'></i>
-                <a href='#'>Backup</a>
-            </li>
-            <li class='launcher'>
-                <i class='icon-bug'></i>
-                <a href='#'>Feedback</a>
-            </li>
+
         </ul>
         <div data-toggle='tooltip' id='beaker' title='Made by lab2023'></div>
     </section>
@@ -195,13 +152,17 @@
 </div>
 <!-- Footer -->
 <!-- Javascripts -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script><script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script><script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script><script src="assets/javascripts/application-985b892b.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script>
+<script src="../js/admin.dashboard.js" type="text/javascript"></script>
+<script src="../controllers/wine_controller.js" type="text/javascript"></script>
 <!-- Google Analytics -->
 <script>
-    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g,s)}(document,'script'));
+//    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+//    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+//        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+//        s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
 </body>
 </html>

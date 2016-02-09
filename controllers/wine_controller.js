@@ -131,16 +131,3 @@ $(function () {
 });
 
 
-//Function to hanlde the login of a user
-$(function () {
-    "use strict";
-    $("#loginBtn").click(function () {
-        var url = "../controllers/wine_controller.php?cmd=8&username=" + $("#username").val() +
-            "&password=" + $("#password").val(), obj;
-
-        obj = sendRequest(url);
-        if (obj.result === 1) {
-            window.location.replace("home.html");
-        }
-    });
-});
