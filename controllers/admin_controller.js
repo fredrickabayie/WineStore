@@ -13,12 +13,6 @@ function sendRequest(u) {
 }//end of sendRequest(u)
 
 
-$(function () {
-    "use strict";
-    displayWines("1");
-});
-
-
 //Function to display the wines
 //$(document).ready(function () {
 function displayWines(page) {
@@ -38,55 +32,63 @@ function displayWines(page) {
             div += "<a class='btn btn-info' onclick='getWineToUpdate(" + obj.wines[index].wine_id + ")' data-toggle='tooltip' href='#' title='Edit'>";
             div += "<i class='icon-edit'></i>";
             div += "</a>";
-            div += "<a class='btn btn-danger' data-toggle='tooltip' href='#' id='deleteBtn' title='Delete'>";
+            div += "<a class='btn btn-danger' data-toggle='tooltip' onclick='deleteWine(this)' href='#' id='deleteBtn' title='Delete'>";
             div += "<i class='icon-trash'></i></a></td></tr>";
         }
         $("#viewWines").html(div);
 
-        if (page === 1)
+        if (parseInt(page) === 1) {
             pagination += "<li><a href='#' onclick='displayWines(1)'>First</a></li>";
-         else
+        } else {
             pagination += "<li><a href='#' onclick='displayWines(" + (parseInt(page) - 1) + ")'>Previous</a></li>";
+        }
 
-
-        for (var i = parseInt(page)-6; i<=parseInt(page)+6; i++) {
+        for (var i = parseInt(page) - 6; i <= parseInt(page) + 6; i++) {
             if (i >= 1 && i <= obj.wines[index].total_pages) {
-                if (i === page)
-                    pagination += "<li><a href='#' style='background-color: lightgrey' onclick='displayWines(" + i + ")'><b>" + i + "</b></a></li>";
-                else
+                if (i === parseInt(page)) {
+                    pagination += "<li class='active'><a href='#' onclick='displayWines(" + i + ")'><b>" + i + "</b></a></li>";
+                } else {
                     pagination += "<li><a href='#' onclick='displayWines(" + i + ")'>" + i + "</a></li>";
+                }
             }
         }
 
-        if (page === obj.wines[index].total_pages) {
+        if (parseInt(page) === obj.wines[index].total_pages) {
             pagination += "<li><a href='#'>Last</a></li>";
         } else {
             pagination += "<li><a href='#' onclick='displayWines(" + (parseInt(page) + 1) + ")'>Next</a></li>";
         }
 
+        $("#recordsNumber").html(obj.wines[index].total_records);
         $("#pagination").html(pagination);
         $("#paginationResult").find("a").html(page + " <a style='color: black'>of</a> " + obj.wines[index].total_pages);
     }
 }
 
 
-
 $(function () {
-    'use strict';
-    $('#deleteBtn').click(function() {
-        console.log("dsfds");
-        //$(this).closest('tr')
-        //    .children('td')
-        //    .animate({ padding: 0 })
-        //    .wrapInner('<div />')
-        //    .children()
-        //    .slideUp(function() { $(this).closest('tr').remove(); });
-        //return false;
-    });
+    "use strict";
+    displayWines("1");
 });
 
 
-
+function deleteWine(id) {
+//$(document).ready(function () {
+    'use strict';
+    //$('#deleteBtn').click(function() {
+    console.log(id);
+    $(id).closest('tr')
+        .children('td')
+        .animate({padding: 0})
+        .wrapInner('<div />')
+        .children()
+        .slideUp(function () {
+            $(this).closest('tr').remove();
+        });
+    return false;
+    //});
+//});
+}
 
 
 //Function that populates the wine type button dropdown
@@ -95,7 +97,7 @@ $(document).ready(function () {
     var obj, url = "../controllers/admin_controller.php?cmd=2", index = "", option = "";
     obj = sendRequest(url);
     if (obj.result === 1) {
-        for (index in obj.wineType ) {
+        for (index in obj.wineType) {
             option += "<option value=" + obj.wineType[index].wine_type_id + ">" + obj.wineType[index].wine_type + "</option>";
             console.log(obj.wineType[index].wine_type);
         }
@@ -110,7 +112,7 @@ $(document).ready(function () {
     var obj, url = "../controllers/admin_controller.php?cmd=3", index = "", option = "";
     obj = sendRequest(url);
     if (obj.result === 1) {
-        for (index in obj.winery ) {
+        for (index in obj.winery) {
             option += "<option value=" + obj.winery[index].winery_id + ">" + obj.winery[index].winery_name + "</option>";
         }
         $("#addWinery").html(option);
@@ -130,10 +132,13 @@ $(function () {
         winery = document.getElementById("addWinery");
         addWinery = winery.options[winery.selectedIndex].value;
         addDescription = encodeURI(document.getElementById("addDescription").value);
-        addImage = "../img";
+        //addImage = encodeURI(document.getElementById("fileToUpload").value);
 
+        addImage = 'img';
         url = "../controllers/admin_controller.php?cmd=4&addWineName=" + addWineName + "&addWineType=" + addWineType +
             "&addYear=" + addYear + "&addWinery=" + addWinery + "&addDescription=" + addDescription + "&addImage=" + addImage;
+
+        //console.log(url+"");
 
         obj = sendRequest(url);
         if (obj.result === 1) {
@@ -154,7 +159,7 @@ $(function () {
 
         obj = sendRequest(url);
         if (obj.result === 1) {
-            window.location.replace("dashboard.php");
+            window.location.replace("adminwines.php");
         }
     });
 });
