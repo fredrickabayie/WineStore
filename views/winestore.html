@@ -47,6 +47,11 @@
                 </span><!-- /btn-group -->
                 <input style="height: 40px; margin-top: 5px; border-radius: 0" id="searchField" name="searchField" placeholder="Search" class="form-control input-lg requiredField" type="text" data-error-empty="Enter winename">
 
+                <!--<ul class="input-group">-->
+                    <!--<label class="radio-inline"><input type="radio" name="optradio">Option 1</label>-->
+                    <!--<label class="radio-inline"><input type="radio" name="optradio">Option 2</label>-->
+                    <!--<label class="radio-inline"><input type="radio" name="optradio">Option 3</label>-->
+                <!--</ul>-->
                 <!--<span class="input-group-btn">-->
                     <!--<button type="button" class="btn btn-default dropdown-toggle wineTypeBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>-->
                 <!--</span>-->
@@ -54,6 +59,13 @@
         </div><!-- /.col-lg-6 -->
 
         <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-center">
+                <li>
+                    <label class="radio-inline"><input type="radio" name="optradio"></label>
+                    <label class="radio-inline"><input type="radio" name="optradio">Option 2</label>
+                    <label class="radio-inline"><input type="radio" name="optradio">Option 3</label>
+                </li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Sort by <span class="caret"></span></a>
                     <ul class="dropdown-menu sortWines" id="sortWines">
@@ -147,7 +159,7 @@
 <script type="text/javascript" src="../js/jquery.waitforimages.min.js"></script>
 <script type="text/javascript" src="../js/jquery.counterup.min.js"></script>
 <script type="text/javascript" src="../js/main.min.js"></script>
-<!--<script type="text/javascript" src="../js/ga.js"></script>-->
+<script type="text/javascript" src="../js/ga.js"></script>
 <script type="text/javascript" src="../controllers/wine_controller.js"></script>
 </body>
 </html>

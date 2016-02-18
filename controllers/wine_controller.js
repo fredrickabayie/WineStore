@@ -25,8 +25,8 @@ $(document).ready(function () {
         for (index in obj.wines) {
             div += '<div class="col-md-4 col-sm-4 col-xs-12 anima scale-in ">';
             div += '<article class="text-center">';
-            div +=  '<img src="../img/wine1.png" style="height: 200px; width: 200px" alt="#" class="zoom-img img-responsive center-block">';
-            div +=  '<h3>​' + obj.wines[index].wine_name + '</h3>';
+            div += '<img src="../img/wine1.png" style="height: 200px; width: 200px" alt="#" class="zoom-img img-responsive center-block">';
+            div += '<h3>​' + obj.wines[index].wine_name + '</h3>';
             div += '<p>WINERY: ' + obj.wines[index].winery_name + '</p>';
             div += '<p>TYPE: ' + obj.wines[index].wine_type + '</p>';
             div += '<p>YEAR: ' + obj.wines[index].year + '</p>';
@@ -50,8 +50,8 @@ $(function () {
             for (index in obj.wines) {
                 div += '<div class="col-md-4 col-sm-4 col-xs-12 anima scale-in ">';
                 div += '<article class="text-center">';
-                div +=  '<img src="img/demo1.jpg" alt="#" class="zoom-img img-responsive center-block">';
-                div +=  '<h3>​' + obj.wines[index].wine_name + '</h3>';
+                div += '<img src="img/demo1.jpg" alt="#" class="zoom-img img-responsive center-block">';
+                div += '<h3>​' + obj.wines[index].wine_name + '</h3>';
                 div += '<p>WINERY: ' + obj.wines[index].winery_name + '</p>';
                 div += '<p>TYPE: ' + obj.wines[index].wine_type + '</p>';
                 div += '<p>YEAR: ' + obj.wines[index].year + '</p>';
@@ -69,7 +69,7 @@ $(document).ready(function () {
     var obj, url = "../controllers/wine_controller.php?cmd=3", index = "", li = "";
     obj = sendRequest(url);
     if (obj.result === 1) {
-        for (index in obj.wineType ) {
+        for (index in obj.wineType) {
             li += '<li><a>' + obj.wineType[index].wine_type + '</a></li>';
         }
         $("#wineTypes").html(li);
@@ -77,7 +77,7 @@ $(document).ready(function () {
 });
 
 
-//Function to display the wines
+//Function to display wines by
 $(function () {
     "use strict";
     $("#wineTypes li > a").click(function () {
@@ -90,8 +90,8 @@ $(function () {
             for (index in obj.wines) {
                 div += '<div class="col-md-4 col-sm-4 col-xs-12 anima scale-in ">';
                 div += '<article class="text-center">';
-                div +=  '<img src="img/demo1.jpg" alt="#" class="zoom-img img-responsive center-block">';
-                div +=  '<h3>​' + obj.wines[index].wine_name + '</h3>';
+                div += '<img src="img/demo1.jpg" alt="#" class="zoom-img img-responsive center-block">';
+                div += '<h3>​' + obj.wines[index].wine_name + '</h3>';
                 div += '<p>WINERY: ' + obj.wines[index].winery_name + '</p>';
                 div += '<p>TYPE: ' + obj.wines[index].wine_type + '</p>';
                 div += '<p>YEAR: ' + obj.wines[index].year + '</p>';
@@ -117,8 +117,8 @@ $(function () {
             for (index in obj.sortWines) {
                 div += '<div class="col-md-4 col-sm-4 col-xs-12 anima scale-in ">';
                 div += '<article class="text-center">';
-                div +=  '<img src="img/demo1.jpg" alt="#" class="zoom-img img-responsive center-block">';
-                div +=  '<h3>​' + obj.sortWines[index].wine_name + '</h3>';
+                div += '<img src="img/demo1.jpg" alt="#" class="zoom-img img-responsive center-block">';
+                div += '<h3>​' + obj.sortWines[index].wine_name + '</h3>';
                 div += '<p>WINERY: ' + obj.sortWines[index].winery_name + '</p>';
                 div += '<p>TYPE: ' + obj.sortWines[index].wine_type + '</p>';
                 div += '<p>YEAR: ' + obj.sortWines[index].year + '</p>';

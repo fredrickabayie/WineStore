@@ -1,9 +1,7 @@
 <?php
 session_start();
-if ( isset ( $_SESSION [ 'LOGIN' ] )  )
-{
-}
-else{
+if (isset ($_SESSION ['LOGIN'])) {
+} else {
     header("Location: login.php");
     exit();
 }
@@ -17,8 +15,10 @@ else{
     <meta content='lab2023' name='author'>
     <meta content='' name='description'>
     <meta content='' name='keywords'>
-    <link href="../css/admin.dashboard.css" rel="stylesheet" type="text/css" /><link href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<!--    <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />-->
+    <link href="../css/admin.dashboard.css" rel="stylesheet" type="text/css"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css"/>
+    <!--    <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />-->
 
 </head>
 <body class='main page'>
@@ -38,8 +38,8 @@ else{
         <li class='dropdown user'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
                 <i class='icon-user'></i>
-                <strong><?php echo $_SESSION['username'];?></strong>
-                <img class="img-rounded" src="http://placehold.it/20x20/ccc/777" />
+                <strong><?php echo $_SESSION['username']; ?></strong>
+                <img class="img-rounded" src="http://placehold.it/20x20/ccc/777"/>
                 <b class='caret'></b>
             </a>
             <ul class='dropdown-menu'>
@@ -48,7 +48,7 @@ else{
                 </li>
                 <li class='divider'></li>
                 <li>
-                    <a href="/">Sign out</a>
+                    <a href="" id="logout" onclick="logout()">Sign out</a>
                 </li>
             </ul>
         </li>
@@ -134,16 +134,20 @@ else{
                 </div>
                 <div class='row text-center'>
                     <div class='col-md-3'>
-                        <input class='knob second' data-bgcolor='#d4ecfd' data-fgcolor='#30a1ec' data-height='140' data-inputcolor='#333' data-thickness='.3' data-width='140' type='text' value='50'>
+                        <input class='knob second' data-bgcolor='#d4ecfd' data-fgcolor='#30a1ec' data-height='140'
+                               data-inputcolor='#333' data-thickness='.3' data-width='140' type='text' value='50'>
                     </div>
                     <div class='col-md-3'>
-                        <input class='knob second' data-bgcolor='#c4e9aa' data-fgcolor='#8ac368' data-height='140' data-inputcolor='#333' data-thickness='.3' data-width='140' type='text' value='75'>
+                        <input class='knob second' data-bgcolor='#c4e9aa' data-fgcolor='#8ac368' data-height='140'
+                               data-inputcolor='#333' data-thickness='.3' data-width='140' type='text' value='75'>
                     </div>
                     <div class='col-md-3'>
-                        <input class='knob second' data-bgcolor='#cef3f5' data-fgcolor='#5ba0a3' data-height='140' data-inputcolor='#333' data-thickness='.3' data-width='140' type='text' value='35'>
+                        <input class='knob second' data-bgcolor='#cef3f5' data-fgcolor='#5ba0a3' data-height='140'
+                               data-inputcolor='#333' data-thickness='.3' data-width='140' type='text' value='35'>
                     </div>
                     <div class='col-md-3'>
-                        <input class='knob second' data-bgcolor='#f8d2e0' data-fgcolor='#b85e80' data-height='140' data-inputcolor='#333' data-thickness='.3' data-width='140' type='text' value='85'>
+                        <input class='knob second' data-bgcolor='#f8d2e0' data-fgcolor='#b85e80' data-height='140'
+                               data-inputcolor='#333' data-thickness='.3' data-width='140' type='text' value='85'>
                     </div>
                 </div>
             </div>
@@ -156,13 +160,13 @@ else{
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script>
 <script src="../js/admin.dashboard.js" type="text/javascript"></script>
-<script src="../controllers/wine_controller.js" type="text/javascript"></script>
+<script src="../controllers/admin_controller.js" type="text/javascript"></script>
 <!-- Google Analytics -->
 <script>
-//    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-//    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-//        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-//        s.parentNode.insertBefore(g,s)}(document,'script'));
+    //    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    //    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    //        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    //        s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
 </body>
 </html>

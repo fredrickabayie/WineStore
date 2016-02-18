@@ -7,12 +7,10 @@
  */
 
 
-if ( isset ( $_REQUEST [ 'cmd' ] ) )
-{
-    $cmd = $_REQUEST[ 'cmd' ];
+if (isset ($_REQUEST ['cmd'])) {
+    $cmd = $_REQUEST['cmd'];
 
-    switch ( $cmd )
-    {
+    switch ($cmd) {
         case 1:
             displayWines();
             break;
@@ -41,6 +39,14 @@ if ( isset ( $_REQUEST [ 'cmd' ] ) )
             logout();
             break;
 
+        case 8:
+            selectWine();
+            break;
+
+        case 9:
+            searchWine();
+            break;
+
         default:
             echo '{"result":0,status:"unknown command"}';
             break;
@@ -52,12 +58,11 @@ if ( isset ( $_REQUEST [ 'cmd' ] ) )
 /**
  * Function to login by admin
  */
-function login ()
+function login()
 {
-    if ( isset ( $_REQUEST['username'] ) & isset ( $_REQUEST['password'] ) )
-    {
+    if (isset ($_REQUEST['username']) & isset ($_REQUEST['password'])) {
         include_once '../models/wine.php';
-        $obj = new Wine ( );
+        $obj = new Wine ();
         $username = stripslashes($_REQUEST ['username']);
         $password = stripslashes($_REQUEST ['password']);
         $username = $obj->real_escape_string($username);
@@ -66,15 +71,12 @@ function login ()
         $result = $obj->login($username, $password);
         $row = $result->fetch_assoc();
 
-        if ( !$row )
-        {
+        if (!$row) {
             echo '{"result":0, "message":"Failed to login"}';
-        }
-        else
-        {
-            echo '{"result":1, "user_name":"'.$row['user_name'].'"}';
+        } else {
+            echo '{"result":1, "user_name":"' . $row['user_name'] . '"}';
             session_start();
-            $_SESSION [ 'LOGIN' ] = "YES";
+            $_SESSION ['LOGIN'] = "YES";
             $_SESSION['username'] = $row['user_name'];
         }
 
@@ -90,68 +92,79 @@ function login ()
 function logout()
 {
     session_start();
-    if ( isset($_SESSION['username']))
-    {
-        session_destroy();
+    if (isset($_SESSION['username'])) {
+        if (session_destroy()) {
+            header("Location: ../views/login.php");
+            echo '{"result":1, "Sessions cleared"}';
+        } else {
+            echo '{"result":0, "Failed to clear sessions"}';
+        }
     }
 }
-
 
 
 /**
  * Function to display all wines
  */
-function displayWines ( )
+function displayWines()
 {
-//    session_start();
-//    if (isset($_SESSION['LOGIN']))
-//    {
-        include_once '../models/admin.php';
-        $wine = new Admin ();
+    $num_perPage = 20;
+    if (isset($_REQUEST['page'])) {
+        $page = $_REQUEST['page'];
+    } else {
+        $page = 1;
+    }
 
-        if ($result = $wine->displayWine()) {
-            $row = $result->fetch_assoc();
-            echo '{"result":1, "wines": [';
-            while ($row) {
-                echo '{"wine_id": "' . $row ["wine_id"] . '", "wine_name": "' . $row ["wine_name"] . '",
-            "winery_name": "' . $row ["winery_name"] . '",
-            "wine_type": "' . $row["wine_type"] . '", "year": "' . $row["year"] . '"}';
+    $start_from = ($page - 1) * $num_perPage;
+    include_once '../models/admin.php';
+    $wine = new Admin ();
 
-                if ($row = $result->fetch_assoc()) {
-                    echo ',';
-                }
+    if ($result = $wine->displayWine($start_from, $num_perPage)) {
+        $row = $result->fetch_assoc();
+
+        $num = $wine->countWine();
+        $total = $num->fetch_assoc();
+        $total_wines = $total["wine_id"];
+
+        $total_pages = ceil($total_wines / $num_perPage);
+
+        echo '{"result":1, "wines": [';
+        while ($row) {
+            echo '{"wine_id":"' . $row["wine_id"] . '", "wine_name":"' . $row["wine_name"] . '",
+        "winery_name":"' . $row["winery_name"] . '", "wine_type":"' . $row["wine_type"] . '",
+        "year":"' . $row["year"] . '", "total_pages": "' . $total_pages . '", "total_records": "' . $total_wines . '"}';
+
+            if ($row = $result->fetch_assoc()) {
+                echo ',';
             }
-            echo ']}';
-        } else {
-            echo '{"result":0,"status": "An error occurred for display wines."}';
         }
-//    }
-}//end of display_all_tasks()
+        echo ']}';
+    } else {
+        echo '{"result":0,"status": "An error occurred for display wines."}';
+    }
+}
 
 
 /**
  * Function to display wine types
  */
-function displayWineTypes ( )
+function displayWineTypes()
 {
     include_once '../models/admin.php';
-    $wine = new Admin ( );
+    $wine = new Admin ();
 
-    if ( $result = $wine->wineType() )
-    {
+    if ($result = $wine->wineType()) {
         $row = $result->fetch_assoc();
         echo '{"result":1, "wineType": [';
-        while ( $row )
-        {
-            echo '{"wine_type_id": "'.$row ["wine_type_id"].'", "wine_type": "'.$row ["wine_type"].'"}';
+        while ($row) {
+            echo '{"wine_type_id": "' . $row ["wine_type_id"] . '", "wine_type": "' . $row ["wine_type"] . '"}';
 
-            if ($row = $result->fetch_assoc() ) {
+            if ($row = $result->fetch_assoc()) {
                 echo ',';
             }
         }
         echo ']}';
-    }   else
-    {
+    } else {
         echo '{"result":0,"status": "An error occurred for display wines."}';
     }
 }
@@ -160,93 +173,176 @@ function displayWineTypes ( )
 /**
  * Function to display winery
  */
-function displayWinery ( )
+function displayWinery()
 {
     include_once '../models/admin.php';
-    $wine = new Admin ( );
+    $wine = new Admin ();
 
-    if ( $result = $wine->winery() )
-    {
+    if ($result = $wine->winery()) {
         $row = $result->fetch_assoc();
         echo '{"result":1, "winery": [';
-        while ( $row )
-        {
-            echo '{"winery_id": "'.$row ["winery_id"].'", "winery_name": "'.$row ["winery_name"].'"}';
+        while ($row) {
+            echo '{"winery_id": "' . $row ["winery_id"] . '", "winery_name": "' . $row ["winery_name"] . '"}';
 
             if ($row = $result->fetch_assoc()) {
                 echo ',';
             }
         }
         echo ']}';
-    }   else
-    {
+    } else {
         echo '{"result":0,"status": "An error occurred for display wines."}';
     }
 }
 
 
 /**
-* Function to add a new wine
-*/
-function insertWine ( )
+ * Function to add a new wine
+ */
+function insertWine()
 {
-    if ( isset ( $_REQUEST [ 'addWineName' ] ) && isset ( $_REQUEST [ 'addWineType' ] )
-        && isset ( $_REQUEST [ 'addYear' ] ) && isset ( $_REQUEST ['addWinery'] )
-        && isset ( $_REQUEST ['addDescription'] ) && isset ( $_REQUEST ['addImage'] ) )
-    {
+    if (isset ($_REQUEST ['addWineName']) && isset ($_REQUEST ['addWineType'])
+        && isset ($_REQUEST ['addYear']) && isset ($_REQUEST ['addWinery'])
+        && isset ($_REQUEST ['addDescription']) && isset ($_FILES ['addImage'])
+    ) {
         include '../models/admin.php';
 
-        $addWineName = $_REQUEST [ 'addWineName' ];
-        $addWineType = $_REQUEST [ 'addWineType' ];
-        $addYear = $_REQUEST [ 'addYear' ];
+        $addWineName = $_REQUEST ['addWineName'];
+        $addWineType = $_REQUEST ['addWineType'];
+        $addYear = $_REQUEST ['addYear'];
         $addWinery = $_REQUEST ['addWinery'];
         $addDescription = $_REQUEST ['addDescription'];
-        $addImage = $_REQUEST ['addImage'];
+//        $addImage = $_REQUEST ['addImage'];
 
-        $addWineId = "1049";
+        $target_dir = "../uploads/";
+        $target_file = $target_dir . basename($_FILES["addImage"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+        // Check if image file is a actual image or fake image
+            $check = getimagesize($_FILES["addImage"]["tmp_name"]);
+            if ($check !== false) {
+                echo "File is an image - " . $check["mime"] . ".";
+                $uploadOk = 1;
+            } else {
+                echo "File is not an image.";
+                $uploadOk = 0;
+            }
+
 
         $wine = new Admin ();
 
-        if ($wine->insertWine($addWineId, $addWineName, $addWineType, $addYear, $addWinery, $addDescription, $addImage))
-        {
+        if ($wine->insertWine(null, $addWineName, $addWineType, $addYear, $addWinery, $addDescription, $addImage)) {
             echo ' { "result":1, "status": "Successfully added a new Wine to the database" } ';
-        }
-        else
-        {
+        } else {
             echo ' { "result":0, "status": "Failed to add a new Wine to the database" }';
         }
     }
 }//end of add_task ( )
 
+
 /**
  * Function to update a wine
  */
-function updateWine ()
+function updateWine()
 {
-    if ( isset ( $_REQUEST [ 'addWineName' ] ) && isset ( $_REQUEST [ 'addWineType' ] )
-        && isset ( $_REQUEST [ 'addYear' ] ) && isset ( $_REQUEST ['addWinery'] )
-        && isset ( $_REQUEST ['addDescription'] ) && isset ( $_REQUEST ['addImage'] ) )
-    {
+    if (isset ($_REQUEST ['updateWineName']) && isset ($_REQUEST ['updateWineType'])
+        && isset ($_REQUEST ['updateYear']) && isset ($_REQUEST ['updateWinery'])
+        && isset ($_REQUEST ['updateDescription']) && isset ($_REQUEST ['updateImage'])
+        && isset($_REQUEST['updateWineId'])
+    ) {
         include '../models/admin.php';
 
-        $addWineName = $_REQUEST [ 'addWineName' ];
-        $addWineType = $_REQUEST [ 'addWineType' ];
-        $addYear = $_REQUEST [ 'addYear' ];
-        $addWinery = $_REQUEST ['addWinery'];
-        $addDescription = $_REQUEST ['addDescription'];
-        $addImage = $_REQUEST ['addImage'];
-
-        $addWineId = "1049";
+        $updateWineName = $_REQUEST ['updateWineName'];
+        $updateWineType = $_REQUEST ['updateWineType'];
+        $updateYear = $_REQUEST ['updateYear'];
+        $updateWinery = $_REQUEST ['updateWinery'];
+        $updateDescription = $_REQUEST ['updateDescription'];
+        $updateImage = $_REQUEST ['updateImage'];
+        $updateWineId = $_REQUEST['updateWineId'];
 
         $wine = new Admin ();
 
-        if ($wine->updateWine($addWineId, $addWineName, $addWineType, $addYear, $addWinery, $addDescription, $addImage))
-        {
+        if ($wine->updateWine($updateWineId, $updateWineName, $updateWineType, $updateYear, $updateWinery, $updateDescription, $updateImage)) {
             echo ' { "result":1, "status": "Successfully updated a Wine in the database" } ';
-        }
-        else
-        {
+        } else {
             echo ' { "result":0, "status": "Failed to update a Wine in the database" }';
         }
     }
+}
+
+
+/**
+ * Function to select wine
+ */
+function selectWine()
+{
+    if (isset($_REQUEST['wine_id'])) {
+        include_once '../models/admin.php';
+        $wine = new Admin ();
+        $wine_id = $_REQUEST['wine_id'];
+
+        if ($result = $wine->selectWine($wine_id)) {
+            $row = $result->fetch_assoc();
+
+            echo '{"wine_id": "' . $row ["wine_id"] . '", "wine_name": "' . $row ["wine_name"] . '", "description": "' . $row["description"] . '",
+            "winery_name": "' . $row ["winery_name"] . '", "wine_type": "' . $row["wine_type"] . '", "year": "' . $row["year"] . '"}';
+
+        } else {
+            echo '{"result":0,"status": "An error occurred to select wine."}';
+        }
+    }
+}
+
+
+/**
+ * Function to search for a task
+ */
+function searchWine()
+{
+    if (isset ($_REQUEST ['searchWord'])) {
+        include_once '../models/wine.php';
+        $wine = new Wine ();
+
+        $searchWord = $_REQUEST ['searchWord'];
+
+        if ($result = $wine->searchWine($searchWord)) {
+            $row = $result->fetch_assoc();
+            echo '{"result":1, "wines": [';
+            while ($row) {
+                echo '{"wine_id": "' . $row ["wine_id"] . '", "wine_name": "' . $row ["wine_name"] . '",
+            "winery_name": "' . $row ["winery_name"] . '", "cost": "' . $row ["cost"] . '",
+            "wine_type": "' . $row["wine_type"] . '", "year": "' . $row["year"] . '"}';
+
+                if ($row = $result->fetch_assoc()) {
+                    echo ',';
+                }
+            }
+            echo ']}';
+        } else {
+            echo '{"result":0,"status": "An error occurred for select product."}';
+        }
+    }
+}//end of search_task()
+
+
+/**
+ * @return mixed
+ */
+function uploadImage()
+{
+    $target_dir = "../uploads/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+    // Check if image file is a actual image or fake image
+    if (isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if ($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
+    return $_FILES["fileToUpload"]["name"];
 }

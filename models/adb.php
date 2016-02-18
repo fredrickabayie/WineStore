@@ -30,11 +30,11 @@ class Adb extends mysqli
      * takes in the host, username, password, the name
      * of the database and the port as its parameters
      *
-     * @param string $host
-     * @param string $username
-     * @param string $passwd
-     * @param string $dbname
-     * @param int $port
+     * @internal param string $host
+     * @internal param string $username
+     * @internal param string $passwd
+     * @internal param string $dbname
+     * @internal param int $port
      */
     public function __construct()
     {

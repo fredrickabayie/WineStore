@@ -30,7 +30,7 @@ class Admin extends Adb
      * @param $password
      * @return bool|mysqli_result
      */
-    public function login ($username, $password)
+    public function login($username, $password)
     {
         $loginQuery = "SELECT `users`.`user_name`, `users`.`password`
                        FROM `users`
@@ -53,9 +53,11 @@ class Admin extends Adb
      * wine name, the year of manufacture, the wine id
      * and winery name
      *
+     * @param $limit
+     * @param $offset
      * @return bool|mysqli_result
      */
-    public function displayWine ()
+    public function displayWine($limit, $offset)
     {
         $wineQuery = "SELECT `wine`.`wine_id`, `wine_type`.`wine_type`, `wine`.`wine_name`, `winery`.`winery_name`, `wine`.`year`
                       FROM `wine`
@@ -63,10 +65,14 @@ class Admin extends Adb
                       JOIN `winery`
                       ON `wine`.`wine_type` = `wine_type`.`wine_type_id`
                       AND `wine`.`winery_id` = `winery`.`winery_id`
-                      ORDER BY `wine`.`wine_id` DESC
-                      LIMIT 20";
+                      ORDER BY `wine`.`wine_id` ASC
+                      LIMIT ?,?";
 
-        return $this->query($wineQuery);
+        if ($statement = $this->prepare($wineQuery)) {
+            $statement->bind_param("ss", $limit, $offset);
+            $statement->execute();
+            return $statement->get_result();
+        }
     }
 
     /**
@@ -78,12 +84,15 @@ class Admin extends Adb
      *
      * @return bool|mysqli_result
      */
-    public function wineType ()
+    public function wineType()
     {
         $wineTypeQuery = "SELECT `wine_type`.`wine_type_id`, `wine_type`.`wine_type`
                           FROM `wine_type`";
 
-        return $this->query($wineTypeQuery);
+        if ($statement = $this->prepare($wineTypeQuery)) {
+            $statement->execute();
+            return $statement->get_result();
+        }
     }
 
     /**
@@ -95,12 +104,15 @@ class Admin extends Adb
      *
      * @return bool|mysqli_result
      */
-    public function winery ()
+    public function winery()
     {
         $wineryQuery = "SELECT `winery`.`region_id`, `winery`.`winery_id`, `winery`.`winery_name`
                         FROM `winery`";
 
-        return $this->query($wineryQuery);
+        if ($statement = $this->prepare($wineryQuery)) {
+            $statement->execute();
+            return $statement->get_result();
+        }
     }
 
     /**
@@ -119,7 +131,7 @@ class Admin extends Adb
      * @param $image
      * @return bool|mysqli_result
      */
-    public function insertWine ($wine_id, $wine_name, $wine_type, $year, $winery_id, $description, $image)
+    public function insertWine($wine_id, $wine_name, $wine_type, $year, $winery_id, $description, $image)
     {
         $insertWineQuery = "INSERT
                             INTO `wine`(`wine_id`, `wine_name`, `wine_type`, `year`, `winery_id`, `description`, `image`)
@@ -147,17 +159,64 @@ class Admin extends Adb
      * @param $image
      * @return bool
      */
-    public function updateWine ($wine_id, $wine_name, $wine_type, $year, $winery_id, $description, $image)
+    public function updateWine($wine_id, $wine_name, $wine_type, $year, $winery_id, $description, $image)
     {
         $updateWineQuery = "UPDATE `wine`
                             SET `wine_name`=?,`wine_type`=?,`year`=?,`winery_id`=?,`description`=?,`image`=?
-                            WHERE `wine_id`=?";
+                            WHERE `wine_id`= ?";
 
         if ($statement = $this->prepare($updateWineQuery)) {
             $statement->bind_param("sssssss", $wine_name, $wine_type, $year, $winery_id, $description, $image, $wine_id);
             return $statement->execute();
         }
     }
+
+    /**
+     * Function SelectWine
+     *
+     * Selecting a single wine from the database
+     *
+     * @param $wine_id
+     * @return bool|mysqli_result
+     */
+    public function selectWine($wine_id)
+    {
+        $selectWineQuery = "SELECT `wine`.`wine_id`, `wine_type`.`wine_type`, `wine`.`wine_name`, `winery`.`winery_name`, `wine`.`year`, `wine`.`description`
+                            FROM `wine`
+                            JOIN `wine_type`
+                            JOIN `winery`
+                            ON `wine`.`wine_type` = `wine_type`.`wine_type_id`
+                            AND `wine`.`winery_id` = `winery`.`winery_id`
+                            WHERE `wine`.`wine_id` = ?
+                            LIMIT 1";
+
+        if ($statement = $this->prepare($selectWineQuery)) {
+            $statement->bind_param("s", $wine_id);
+            $statement->execute();
+            return $statement->get_result();
+        }
+    }
+
+    /**
+     * Function CountWine
+     *
+     * Counting the total number of wine in the
+     * database
+     *
+     * @return bool|mysqli_result
+     */
+    public function countWine()
+    {
+        $countWineQuery = "SELECT COUNT(*)
+                           AS `wine_id`
+                           FROM `wine`";
+
+        if ($statement = $this->prepare($countWineQuery)) {
+            $statement->execute();
+            return $statement->get_result();
+        }
+    }
+
 }
 
 

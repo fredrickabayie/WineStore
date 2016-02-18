@@ -72,7 +72,10 @@ class Wine extends Adb
                       ORDER BY `wine_id`
                       LIMIT 20";
 
-        return $this->query($wineQuery);
+        if ($statement = $this->prepare($wineQuery)) {
+            $statement->execute();
+            return $statement->get_result();
+        }
     }
 
     /**
@@ -116,7 +119,10 @@ class Wine extends Adb
         $wineTypeQuery = "SELECT `wine_type`.`wine_type_id`, `wine_type`.`wine_type`
                           FROM `wine_type`";
 
-        return $this->query($wineTypeQuery);
+        if ($statement = $this->prepare($wineTypeQuery)) {
+            $statement->execute();
+            return $statement->get_result();
+        }
     }
 
     /**
@@ -171,7 +177,10 @@ class Wine extends Adb
                               ORDER BY `inventory`.`cost` DESC
                               LIMIT 9";
 
-        return $this->query($sortWineDescQuery);
+        if ($statement = $this->prepare($sortWineDescQuery)) {
+            $statement->execute();
+            return $statement->get_result();
+        }
     }
 
     /**
@@ -195,7 +204,10 @@ class Wine extends Adb
                               ORDER BY `inventory`.`cost` ASC
                               LIMIT 9";
 
-        return $this->query($sortWineAscQuery);
+        if ($statement = $this->prepare($sortWineAscQuery)) {
+            $statement->execute();
+            return $statement->get_result();
+        }
     }
 
     /**
@@ -218,7 +230,10 @@ class Wine extends Adb
                          ORDER BY `wine`.`wine_name`
                          LIMIT 9";
 
-        return $this->query($sortWineName);
+        if ($statement = $this->prepare($sortWineName)) {
+            $statement->execute();
+            return $statement->get_result();
+        }
     }
 }
 
