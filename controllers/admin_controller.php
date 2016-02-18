@@ -230,24 +230,24 @@ function insertWine ( )
  */
 function updateWine ()
 {
-    if ( isset ( $_REQUEST [ 'addWineName' ] ) && isset ( $_REQUEST [ 'addWineType' ] )
-        && isset ( $_REQUEST [ 'addYear' ] ) && isset ( $_REQUEST ['addWinery'] )
-        && isset ( $_REQUEST ['addDescription'] ) && isset ( $_REQUEST ['addImage'] ) )
+    if ( isset ( $_REQUEST [ 'updateWineName' ] ) && isset ( $_REQUEST [ 'updateWineType' ] )
+        && isset ( $_REQUEST [ 'updateYear' ] ) && isset ( $_REQUEST ['updateWinery'] )
+        && isset ( $_REQUEST ['updateDescription'] ) && isset ( $_REQUEST ['updateImage'] )
+        && isset($_REQUEST['updateWineId']))
     {
         include '../models/admin.php';
 
-        $addWineName = $_REQUEST [ 'addWineName' ];
-        $addWineType = $_REQUEST [ 'addWineType' ];
-        $addYear = $_REQUEST [ 'addYear' ];
-        $addWinery = $_REQUEST ['addWinery'];
-        $addDescription = $_REQUEST ['addDescription'];
-        $addImage = $_REQUEST ['addImage'];
-
-        $addWineId = "1049";
+        $updateWineName = $_REQUEST [ 'updateWineName' ];
+        $updateWineType = $_REQUEST [ 'updateWineType' ];
+        $updateYear = $_REQUEST [ 'updateYear' ];
+        $updateWinery = $_REQUEST ['updateWinery'];
+        $updateDescription = $_REQUEST ['updateDescription'];
+        $updateImage = $_REQUEST ['updateImage'];
+        $updateWineId = $_REQUEST['updateWineId'];
 
         $wine = new Admin ();
 
-        if ($wine->updateWine($addWineId, $addWineName, $addWineType, $addYear, $addWinery, $addDescription, $addImage))
+        if ($wine->updateWine($updateWineId, $updateWineName, $updateWineType, $updateYear, $updateWinery, $updateDescription, $updateImage))
         {
             echo ' { "result":1, "status": "Successfully updated a Wine in the database" } ';
         }
@@ -271,14 +271,12 @@ function selectWine ( )
 
         if ($result = $wine->selectWine($wine_id)) {
             $row = $result->fetch_assoc();
-            echo '{"result":1, "wines": [';
 
-                echo '{"wine_id": "' . $row ["wine_id"] . '", "wine_name": "' . $row ["wine_name"] . '",
+                echo '{"wine_id": "' . $row ["wine_id"] . '", "wine_name": "' . $row ["wine_name"] . '", "description": "'.$row["description"].'",
             "winery_name": "' . $row ["winery_name"] . '", "wine_type": "' . $row["wine_type"] . '", "year": "' . $row["year"] . '"}';
 
-            echo ']}';
         } else {
-            echo '{"result":0,"status": "An error occurred for display wines."}';
+            echo '{"result":0,"status": "An error occurred to select wine."}';
         }
     }
 }

@@ -29,8 +29,8 @@ $(document).ready(function () {
             div += "<a class='btn btn-success' data-toggle='tooltip' href='#' title='View'>";
             div += "<i class='icon-zoom-in'></i>";
             div += "</a>";
-            div += "<a class='btn btn-info' data-toggle='tooltip' href='#' title='Edit'>";
-            div += "<i class='icon-edit' onclick='getWineToUpdate(" + obj.wines[index].wine_id + ")'></i>";
+            div += "<a class='btn btn-info' onclick='getWineToUpdate(" + obj.wines[index].wine_id + ")' data-toggle='tooltip' href='#' title='Edit'>";
+            div += "<i class='icon-edit'></i>";
             div += "</a>";
             div += "<a class='btn btn-danger' data-toggle='tooltip' href='#' title='Delete'>";
             div += "<i class='icon-trash'></i></a></td></tr>";
@@ -68,6 +68,7 @@ $(document).ready(function () {
     }
 });
 
+//Function to add a new wine
 $(function () {
     "use strict";
     $("#addWineBtn").click(function () {
@@ -88,6 +89,8 @@ $(function () {
         obj = sendRequest(url);
         if (obj.result === 1) {
             $("#notification").html("New Wine Added");
+        } else {
+            $("#notification").html("Failed to add wine");
         }
     });
 });
@@ -119,11 +122,53 @@ function logout() {
     }
 }
 
-function getWineToUpdate(id)
-{
+//Function to send a request for a single wine by id
+function getWineToUpdate(id) {
     "use strict";
-    alert(id);
+    var obj, wineType, url = "../controllers/admin_controller.php?cmd=8&wine_id=" + id;
+
+    obj = sendRequest(url);
+    if (obj.wine_name !== null) {
+        $("#addWineName").val(obj.wine_name);
+        $("#addYear").val(obj.year);
+        $("#addDescription").val(obj.description);
+        $("#addWineId").val(obj.wine_id);
+        $("#addWineType").find("option").filter(function () {
+            return ($(this).text() === obj.wine_type); //To select Blue
+        }).prop('selected', true);
+        $("#addWinery").find("option").filter(function () {
+            return ($(this).text() === obj.winery_name); //To select Blue
+        }).prop('selected', true);
+    }
 }
 
 
+//Function to update a wine
+$(function () {
+    "use strict";
+    $("#updateWineBtn").click(function () {
+        var updateWineName, wineType, updateWineType, updateYear, winery, updateWinery, updateDescription, obj,
+            url, updateImage, updateWineId;
+        updateWineId = encodeURI(document.getElementById("addWineId").value);
+        updateWineName = encodeURI(document.getElementById("addWineName").value);
+        wineType = document.getElementById("addWineType");
+        updateWineType = wineType.options[wineType.selectedIndex].value;
+        updateYear = encodeURI(document.getElementById("addYear").value);
+        winery = document.getElementById("addWinery");
+        updateWinery = winery.options[winery.selectedIndex].value;
+        updateDescription = encodeURI(document.getElementById("addDescription").value);
+        updateImage = "../img";
+
+        url = "../controllers/admin_controller.php?cmd=5&updateWineName=" + updateWineName + "&updateWineType=" + updateWineType +
+            "&updateYear=" + updateYear + "&updateWinery=" + updateWinery + "&updateDescription=" + updateDescription + "&updateImage=" + updateImage +
+            "&updateWineId=" + updateWineId;
+
+        obj = sendRequest(url);
+        if (obj.result === 1) {
+            $("#notification").html("Wine Updated");
+        } else {
+            $("#notification").html("Failed to update wine");
+        }
+    });
+});
 

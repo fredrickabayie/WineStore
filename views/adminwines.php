@@ -145,52 +145,7 @@ else{
                         <button id="addWineBtn" class="btn btn-success" type="button">Insert</button>
                         <button id="updateWineBtn" class="btn btn-primary" type="button">Update</button>
                         <a id="clearBtn" class="btn btn-default" href="#" onclick="clearAddWineForm()">Clear</a>
-                    </div>
-                </form>
-            </div>
-
-
-            <div class="panel-heading" style="margin-top: 30px">
-                <i class="icon-edit icon-large"></i>
-                View Wines
-            </div>
-            <div class="panel-body">
-                <form>
-                    <fieldset>
-
-                        <div class="form-group row">
-                            <div class="col-lg-3 col-sm-6">
-                                <input id="addWineName" class="form-control" placeholder="Wine Name" type="text" data-toggle="tooltip" data-original-title="Wine Name">
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <select id="addWineType" class="form-control" data-toggle="tooltip" data-original-title="Wine Type">
-                                </select>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <input id="addYear" class="form-control" placeholder="Year" type="number" data-toggle="tooltip" data-original-title="Year">
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <select id="addWinery" class="form-control" data-toggle="tooltip" data-original-title="Winery">
-                                </select>
-                            </div>
-                            <div class="col-lg-6">
-                                <label class="control-label">Description</label>
-                                <textarea id="addDescription" class="form-control" rows="4" placeholder="Description"></textarea>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <label class="control-label">Upload Picture</label>
-                                <input type="file" onchange="readURL(this)">
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <img id="blah" src="#" alt="your image" />
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <div class="form-actions">
-<!--                        <button id="addWineBtn" class="btn btn-success" type="button">Insert</button>-->
-<!--                        <button id="updateWineBtn" class="btn btn-primary" type="button">Update</button>-->
-                        <a id="clearBtn" class="btn btn-default" href="#">Clear</a>
+                        <input id="addWineId" style="display: none">
                     </div>
                 </form>
             </div>
