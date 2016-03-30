@@ -1,11 +1,9 @@
 <?php
 
-if ( isset ( $_REQUEST [ 'cmd' ] ) )
-{
-    $cmd = $_REQUEST[ 'cmd' ];
-    
-    switch ( $cmd )
-    {
+if (isset ($_REQUEST ['cmd'])) {
+    $cmd = $_REQUEST['cmd'];
+
+    switch ($cmd) {
         case 1:
             displayWines();
             break;
@@ -42,35 +40,32 @@ if ( isset ( $_REQUEST [ 'cmd' ] ) )
             echo '{"result":0,status:"unknown command"}';
             break;
     }//end of switch
-    
+
 }//end of if
 
 
 /**
  * Function to display all tasks
  */
-function displayWines ( )
+function displayWines()
 {
     include_once '../models/wine.php';
-    $wine = new Wine ( );
+    $wine = new Wine ();
 
-    if ( $result = $wine->displayWine() )
-    {
+    if ($result = $wine->displayWine()) {
         $row = $result->fetch_assoc();
         echo '{"result":1, "wines": [';
-        while ( $row )
-        {
-            echo '{"wine_id": "'.$row ["wine_id"].'", "wine_name": "'.$row ["wine_name"].'",
-            "winery_name": "'.$row ["winery_name"].'", "cost": "'.$row ["cost"].'",
-            "wine_type": "'.$row["wine_type"].'", "year": "'.$row["year"].'"}';
+        while ($row) {
+            echo '{"wine_id": "' . $row ["wine_id"] . '", "wine_name": "' . $row ["wine_name"] . '",
+            "winery_name": "' . $row ["winery_name"] . '", "cost": "' . $row ["cost"] . '",
+            "wine_type": "' . $row["wine_type"] . '", "year": "' . $row["year"] . '"}';
 
-            if ($row = $result->fetch_assoc() )   {
-                    echo ',';
+            if ($row = $result->fetch_assoc()) {
+                echo ',';
             }
         }
-            echo ']}';
-    }   else
-    {
+        echo ']}';
+    } else {
         echo '{"result":0,"status": "An error occurred for display wines."}';
     }
 }//end of display_all_tasks()
@@ -79,32 +74,28 @@ function displayWines ( )
 /**
  * Function to search for a task
  */
-function searchWine ( )
+function searchWine()
 {
-    if ( isset ( $_REQUEST [ 'searchWord' ] ) )
-    {
+    if (isset ($_REQUEST ['searchWord'])) {
         include_once '../models/wine.php';
-        $wine = new Wine ( );
+        $wine = new Wine ();
 
-        $searchWord = $_REQUEST [ 'searchWord' ];
+        $searchWord = $_REQUEST ['searchWord'];
 
-        if ( $result = $wine->searchWine ( $searchWord ) )
-        {
-            $row = $result->fetch_assoc ( );
+        if ($result = $wine->searchWine($searchWord)) {
+            $row = $result->fetch_assoc();
             echo '{"result":1, "wines": [';
-            while ( $row )
-            {
-                echo '{"wine_id": "'.$row ["wine_id"].'", "wine_name": "'.$row ["wine_name"].'",
-            "winery_name": "'.$row ["winery_name"].'", "cost": "'.$row ["cost"].'",
-            "wine_type": "'.$row["wine_type"].'", "year": "'.$row["year"].'"}';
+            while ($row) {
+                echo '{"wine_id": "' . $row ["wine_id"] . '", "wine_name": "' . $row ["wine_name"] . '",
+            "winery_name": "' . $row ["winery_name"] . '", "cost": "' . $row ["cost"] . '",
+            "wine_type": "' . $row["wine_type"] . '", "year": "' . $row["year"] . '"}';
 
-                if ( $row = $result->fetch_assoc() ) {
+                if ($row = $result->fetch_assoc()) {
                     echo ',';
                 }
             }
             echo ']}';
-        }   else
-        {
+        } else {
             echo '{"result":0,"status": "An error occurred for select product."}';
         }
     }
@@ -114,42 +105,38 @@ function searchWine ( )
 /**
  * Function to display all tasks
  */
-function displayWineTypes ( )
+function displayWineTypes()
 {
     include_once '../models/wine.php';
-    $wine = new Wine ( );
+    $wine = new Wine ();
 
-    if ( $result = $wine->wineType() )
-    {
+    if ($result = $wine->wineType()) {
         $row = $result->fetch_assoc();
         echo '{"result":1, "wineType": [';
-        while ( $row )
-        {
-            echo '{"wine_type_id": "'.$row ["wine_type_id"].'", "wine_type": "'.$row ["wine_type"].'"}';
+        while ($row) {
+            echo '{"wine_type_id": "' . $row ["wine_type_id"] . '", "wine_type": "' . $row ["wine_type"] . '"}';
 
-            if ($row = $result->fetch_assoc() ) {
+            if ($row = $result->fetch_assoc()) {
                 echo ',';
             }
         }
         echo ']}';
-    }   else
-    {
+    } else {
         echo '{"result":0,"status": "An error occurred for display wines."}';
     }
 }
 
 
-
 /**
  * Function to display all tasks
  */
-function displayWineByType ( )
+function displayWineByType()
 {
-    if ( isset ( $_REQUEST [ 'wineType' ] ) ) {
+    if (isset ($_REQUEST ['wineType'])) {
         include_once '../models/wine.php';
         $wine = new Wine ();
 
-        $wineType = $_REQUEST [ 'wineType' ];
+        $wineType = $_REQUEST ['wineType'];
 
         if ($result = $wine->displayWineByType($wineType)) {
             $row = $result->fetch_assoc();
@@ -175,28 +162,28 @@ function displayWineByType ( )
  * Function to display all sorted wines by cost in
  * descending order
  */
-function sortWineDesc ( )
+function sortWineDesc()
 {
-        include_once '../models/wine.php';
-        $wine = new Wine ();
+    include_once '../models/wine.php';
+    $wine = new Wine ();
 
-        if ($result = $wine->sortWinePriceDesc()) {
-            $row = $result->fetch_assoc();
-            echo '{"result":1, "sortWines": [';
+    if ($result = $wine->sortWinePriceDesc()) {
+        $row = $result->fetch_assoc();
+        echo '{"result":1, "sortWines": [';
 
-            while ($row) {
-                echo '{"wine_id": "' . $row ["wine_id"] . '", "wine_name": "' . $row ["wine_name"] . '",
+        while ($row) {
+            echo '{"wine_id": "' . $row ["wine_id"] . '", "wine_name": "' . $row ["wine_name"] . '",
             "winery_name": "' . $row ["winery_name"] . '", "cost": "' . $row ["cost"] . '",
             "wine_type": "' . $row["wine_type"] . '", "year": "' . $row["year"] . '"}';
 
-                if ($row = $result->fetch_assoc()) {
-                    echo ',';
-                }
+            if ($row = $result->fetch_assoc()) {
+                echo ',';
             }
-            echo ']}';
-        } else {
-            echo '{"result":0,"status": "An error occurred for display wines."}';
         }
+        echo ']}';
+    } else {
+        echo '{"result":0,"status": "An error occurred for display wines."}';
+    }
 }
 
 
@@ -204,7 +191,7 @@ function sortWineDesc ( )
  * Function to display all sorted wines by cost in
  * ascending order
  */
-function sortWineAsc ( )
+function sortWineAsc()
 {
     include_once '../models/wine.php';
     $wine = new Wine ();
@@ -232,7 +219,7 @@ function sortWineAsc ( )
 /**
  * Function to display all sorted wines by name
  */
-function sortWineName ( )
+function sortWineName()
 {
     include_once '../models/wine.php';
     $wine = new Wine ();
@@ -256,12 +243,11 @@ function sortWineName ( )
     }
 }
 
-function login ()
+function login()
 {
-    if ( isset ( $_REQUEST['username'] ) & isset ( $_REQUEST['password'] ) )
-    {
+    if (isset ($_REQUEST['username']) & isset ($_REQUEST['password'])) {
         include_once '../models/wine.php';
-        $obj = new Wine ( );
+        $obj = new Wine ();
         $username = stripslashes($_REQUEST ['username']);
         $password = stripslashes($_REQUEST ['password']);
         $username = $obj->real_escape_string($username);
@@ -270,13 +256,10 @@ function login ()
         $result = $obj->login($username, $password);
         $row = $result->fetch_assoc();
 
-        if ( !$row )
-        {
+        if (!$row) {
             echo '{"result":0, "message":"Failed to login"}';
-        }
-        else
-        {
-            echo '{"result":1, "user_name":"'.$row['user_name'].'"}';
+        } else {
+            echo '{"result":1, "user_name":"' . $row['user_name'] . '"}';
         }
 
         $result->close();
@@ -285,16 +268,14 @@ function login ()
 }
 
 
-
-function sendMail ( )
+function sendMail()
 {
     $admin = "chok.real@gmail.com";
     $mail = "fredrick.abayie@ashesi.edu.gh";
     $subject = "Mail sending first test";
     $comment = "good or bad";
-    
-    if ( mail($admin, $subject,  $comment, 'From'.$mail) )
-    {
-      echo '{"success"}';
+
+    if (mail($admin, $subject, $comment, 'From' . $mail)) {
+        echo '{"success"}';
     }
 }
